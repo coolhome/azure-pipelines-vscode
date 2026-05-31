@@ -1,0 +1,64 @@
+{
+	"folders": [
+		{
+			"name": "azure-pipelines-vscode",
+			"path": "."
+		},
+		{
+			"name": "azp-expression-test",
+			"path": "../azp-expression-test"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"examples/**/*.yml": "azure-pipelines",
+			"examples/**/*.yaml": "azure-pipelines"
+		},
+		"editor.tokenColorCustomizations": {
+			"textMateRules": [
+				{ "scope": "meta.template-expression.azure-pipelines", "settings": { "foreground": "#C586C0" } },
+				{ "scope": "meta.runtime-expression.azure-pipelines",  "settings": { "foreground": "#4FC1FF" } },
+				{ "scope": "meta.macro-expression.azure-pipelines",    "settings": { "foreground": "#DCDCAA" } },
+				{ "scope": "support.function.builtin.azure-pipelines", "settings": { "foreground": "#DCDCAA", "fontStyle": "bold" } },
+				{ "scope": "support.function.job-status.azure-pipelines", "settings": { "foreground": "#DCDCAA", "fontStyle": "bold italic" } },
+				{ "scope": "variable.language.context.azure-pipelines","settings": { "foreground": "#9CDCFE" } },
+				{ "scope": "variable.other.macro.azure-pipelines",     "settings": { "foreground": "#9CDCFE" } },
+				{ "scope": "keyword.control.directive.azure-pipelines","settings": { "foreground": "#C586C0", "fontStyle": "bold" } },
+				{ "scope": "constant.language.azure-pipelines",        "settings": { "foreground": "#569CD6" } },
+				{ "scope": "constant.numeric.azure-pipelines",         "settings": { "foreground": "#B5CEA8" } },
+				{ "scope": "constant.other.version.azure-pipelines",   "settings": { "foreground": "#B5CEA8" } },
+				{ "scope": "string.quoted.single.azure-pipelines",     "settings": { "foreground": "#CE9178" } },
+				{ "scope": "punctuation.definition.template-expression.begin.azure-pipelines", "settings": { "foreground": "#C586C0", "fontStyle": "bold" } },
+				{ "scope": "punctuation.definition.template-expression.end.azure-pipelines",   "settings": { "foreground": "#C586C0", "fontStyle": "bold" } },
+				{ "scope": "punctuation.definition.runtime-expression.begin.azure-pipelines",  "settings": { "foreground": "#4FC1FF", "fontStyle": "bold" } },
+				{ "scope": "punctuation.definition.runtime-expression.end.azure-pipelines",    "settings": { "foreground": "#4FC1FF", "fontStyle": "bold" } },
+				{ "scope": "punctuation.definition.macro-expression.begin.azure-pipelines",    "settings": { "foreground": "#DCDCAA", "fontStyle": "bold" } },
+				{ "scope": "punctuation.definition.macro-expression.end.azure-pipelines",      "settings": { "foreground": "#DCDCAA", "fontStyle": "bold" } }
+			]
+		}
+	},
+	"extensions": {
+		"recommendations": [
+			"dbaeumer.vscode-eslint"
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Run Extension (grammar test)",
+				"type": "extensionHost",
+				"request": "launch",
+				"runtimeExecutable": "${execPath}",
+				"args": [
+					"--extensionDevelopmentPath=${workspaceFolder:azure-pipelines-vscode}",
+					"--disable-extensions",
+					"${workspaceFolder:azure-pipelines-vscode}/examples/expressionSyntaxes.yml"
+				],
+				"outFiles": [
+					"${workspaceFolder:azure-pipelines-vscode}/dist/**/*.js"
+				]
+			}
+		]
+	}
+}
