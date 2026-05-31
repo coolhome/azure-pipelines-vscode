@@ -3,7 +3,7 @@
 		"This file has been converted from https://github.com/textmate/yaml.tmbundle/blob/master/Syntaxes/YAML.tmLanguage",
 		"It came by way of https://github.com/microsoft/vscode/blob/main/extensions/yaml/syntaxes/yaml.tmLanguage.json",
 		"and should track to that file.",
-		"Modified for the Azure Pipelines extension: adds highlighting for the three Azure Pipelines variable/expression syntaxes — `${{ }}` template expressions, `$[ ]` runtime expressions, and `$( )` macros — inside YAML scalars. See repository entries with the `azp-` prefix.",
+		"Modified for the Azure Pipelines extension: adds highlighting for the three Azure Pipelines variable/expression syntaxes — `${{ }}` template expressions, `$[ ]` runtime expressions, and `$( )` macros — inside YAML scalars. See the `expressions`, `template-expression`, `runtime-expression`, `macro`, and related repository entries.",
 		"Refs: https://learn.microsoft.com/azure/devops/pipelines/process/variables#understand-variable-syntax , https://learn.microsoft.com/azure/devops/pipelines/process/template-expressions , https://learn.microsoft.com/azure/devops/pipelines/process/expressions"
 	],
 	"version": "https://github.com/textmate/yaml.tmbundle/commit/e54ceae3b719506dba7e481a77cea4a8b576ae46",
@@ -34,12 +34,12 @@
 	"repository": {
 		"expressions": {
 			"patterns": [
-				{ "include": "#azp-template-expression" },
-				{ "include": "#azp-runtime-expression" },
-				{ "include": "#azp-macro" }
+				{ "include": "#template-expression" },
+				{ "include": "#runtime-expression" },
+				{ "include": "#macro" }
 			]
 		},
-		"azp-template-expression": {
+		"template-expression": {
 			"begin": "\\$\\{\\{",
 			"beginCaptures": {
 				"0": { "name": "punctuation.definition.template-expression.begin.azure-pipelines" }
@@ -50,10 +50,10 @@
 			},
 			"name": "meta.template-expression.azure-pipelines",
 			"patterns": [
-				{ "include": "#azp-expression-body" }
+				{ "include": "#expression-body" }
 			]
 		},
-		"azp-runtime-expression": {
+		"runtime-expression": {
 			"begin": "\\$\\[",
 			"beginCaptures": {
 				"0": { "name": "punctuation.definition.runtime-expression.begin.azure-pipelines" }
@@ -64,10 +64,10 @@
 			},
 			"name": "meta.runtime-expression.azure-pipelines",
 			"patterns": [
-				{ "include": "#azp-expression-body" }
+				{ "include": "#expression-body" }
 			]
 		},
-		"azp-macro": {
+		"macro": {
 			"match": "(\\$\\()([A-Za-z_][A-Za-z0-9_.]*)(\\))",
 			"name": "meta.macro-expression.azure-pipelines",
 			"captures": {
@@ -76,41 +76,41 @@
 				"3": { "name": "punctuation.definition.macro-expression.end.azure-pipelines" }
 			}
 		},
-		"azp-expression-body": {
+		"expression-body": {
 			"patterns": [
-				{ "include": "#azp-directive-keyword" },
-				{ "include": "#azp-builtin-function" },
-				{ "include": "#azp-job-status-function" },
-				{ "include": "#azp-context-object" },
-				{ "include": "#azp-language-constant" },
-				{ "include": "#azp-string-literal" },
-				{ "include": "#azp-version-literal" },
-				{ "include": "#azp-number-literal" },
-				{ "include": "#azp-punctuation" },
-				{ "include": "#azp-identifier" }
+				{ "include": "#directive-keyword" },
+				{ "include": "#builtin-function" },
+				{ "include": "#job-status-function" },
+				{ "include": "#context-object" },
+				{ "include": "#language-constant" },
+				{ "include": "#string-literal" },
+				{ "include": "#version-literal" },
+				{ "include": "#number-literal" },
+				{ "include": "#punctuation" },
+				{ "include": "#identifier" }
 			]
 		},
-		"azp-directive-keyword": {
+		"directive-keyword": {
 			"match": "\\b(if|elseif|else|each|in|insert)\\b",
 			"name": "keyword.control.directive.azure-pipelines"
 		},
-		"azp-builtin-function": {
+		"builtin-function": {
 			"match": "\\b(and|or|not|xor|eq|ne|lt|le|gt|ge|contains|startsWith|endsWith|in|notIn|containsValue|coalesce|counter|format|join|split|length|replace|convertToJson|lower|upper|trim|iif)(?=\\s*\\()",
 			"name": "support.function.builtin.azure-pipelines"
 		},
-		"azp-job-status-function": {
+		"job-status-function": {
 			"match": "\\b(always|succeeded|failed|canceled|succeededOrFailed)(?=\\s*\\()",
 			"name": "support.function.job-status.azure-pipelines"
 		},
-		"azp-context-object": {
+		"context-object": {
 			"match": "\\b(variables|parameters|dependencies|stageDependencies|pipeline|resources|secrets)\\b",
 			"name": "variable.language.context.azure-pipelines"
 		},
-		"azp-language-constant": {
+		"language-constant": {
 			"match": "\\b(true|True|TRUE|false|False|FALSE|null|Null|NULL)\\b",
 			"name": "constant.language.azure-pipelines"
 		},
-		"azp-string-literal": {
+		"string-literal": {
 			"begin": "'",
 			"beginCaptures": {
 				"0": { "name": "punctuation.definition.string.begin.azure-pipelines" }
@@ -124,15 +124,15 @@
 				{ "match": "''", "name": "constant.character.escape.azure-pipelines" }
 			]
 		},
-		"azp-version-literal": {
+		"version-literal": {
 			"match": "\\b\\d+(?:\\.\\d+){2,3}\\b",
 			"name": "constant.other.version.azure-pipelines"
 		},
-		"azp-number-literal": {
+		"number-literal": {
 			"match": "(?<![A-Za-z_0-9.])-?(?:\\d+\\.\\d+|\\.\\d+|\\d+)\\b",
 			"name": "constant.numeric.azure-pipelines"
 		},
-		"azp-punctuation": {
+		"punctuation": {
 			"patterns": [
 				{ "match": "[(),]", "name": "punctuation.separator.azure-pipelines" },
 				{ "match": "\\[", "name": "punctuation.section.brackets.begin.azure-pipelines" },
@@ -140,7 +140,7 @@
 				{ "match": "\\.", "name": "punctuation.accessor.azure-pipelines" }
 			]
 		},
-		"azp-identifier": {
+		"identifier": {
 			"match": "[A-Za-z_][A-Za-z0-9_]*",
 			"name": "variable.other.azure-pipelines"
 		},
