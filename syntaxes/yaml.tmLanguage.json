@@ -32,7 +32,7 @@
 		}
 	],
 	"repository": {
-		"azp-expressions": {
+		"expressions": {
 			"patterns": [
 				{ "include": "#azp-template-expression" },
 				{ "include": "#azp-runtime-expression" },
@@ -166,7 +166,7 @@
 				{
 					"include": "#prototype"
 				},
-				{ "include": "#azp-expressions" },
+				{ "include": "#expressions" },
 				{
 					"include": "#block-scalar"
 				},
@@ -183,7 +183,7 @@
 		},
 		"block-pair": {
 			"patterns": [
-				{ "include": "#azp-expressions" },
+				{ "include": "#expressions" },
 				{
 					"begin": "\\?",
 					"beginCaptures": {
@@ -225,7 +225,7 @@
 							"end": "(?x)\n                                (?=\n                                      \\s* $\n                                    | \\s+ \\#\n                                    | \\s* : (\\s|$)\n                                )\n                            ",
 							"name": "string.unquoted.plain.out.yaml",
 							"patterns": [
-								{ "include": "#azp-expressions" }
+								{ "include": "#expressions" }
 							]
 						}
 					]
@@ -270,7 +270,7 @@
 					"end": "^(?!\\1|\\s*$)",
 					"name": "string.unquoted.block.yaml",
 					"patterns": [
-						{ "include": "#azp-expressions" }
+						{ "include": "#expressions" }
 					]
 				}
 			]
@@ -414,7 +414,7 @@
 				{
 					"include": "#prototype"
 				},
-				{ "include": "#azp-expressions" },
+				{ "include": "#expressions" },
 				{
 					"include": "#flow-alias"
 				},
@@ -428,7 +428,7 @@
 		},
 		"flow-pair": {
 			"patterns": [
-				{ "include": "#azp-expressions" },
+				{ "include": "#expressions" },
 				{
 					"begin": "\\?",
 					"beginCaptures": {
@@ -483,7 +483,7 @@
 							"end": "(?x)\n                                (?=\n                                      \\s* $\n                                    | \\s+ \\#\n                                    | \\s* : (\\s|$)\n                                    | \\s* : [\\[\\]{},]\n                                    | \\s* [\\[\\]{},]\n                                )\n                            ",
 							"name": "string.unquoted.plain.in.yaml",
 							"patterns": [
-								{ "include": "#azp-expressions" }
+								{ "include": "#expressions" }
 							]
 						}
 					]
@@ -510,7 +510,7 @@
 		},
 		"flow-scalar": {
 			"patterns": [
-				{ "include": "#azp-expressions" },
+				{ "include": "#expressions" },
 				{
 					"include": "#flow-scalar-double-quoted"
 				},
@@ -537,7 +537,7 @@
 			},
 			"name": "string.quoted.double.yaml",
 			"patterns": [
-				{ "include": "#azp-expressions" },
+				{ "include": "#expressions" },
 				{
 					"match": "\\\\([0abtnvfre \"/\\\\N_Lp]|x\\d\\d|u\\d{4}|U\\d{8})",
 					"name": "constant.character.escape.yaml"
@@ -558,7 +558,7 @@
 					"end": "(?x)\n                        (?=\n                              \\s* $\n                            | \\s+ \\#\n                            | \\s* : (\\s|$)\n                            | \\s* : [\\[\\]{},]\n                            | \\s* [\\[\\]{},]\n                        )\n                    ",
 					"name": "string.unquoted.plain.in.yaml",
 					"patterns": [
-						{ "include": "#azp-expressions" }
+						{ "include": "#expressions" }
 					]
 				}
 			]
@@ -603,7 +603,7 @@
 					"end": "(?x)\n                        (?=\n                              \\s* $\n                            | \\s+ \\#\n                            | \\s* : (\\s|$)\n                        )\n                    ",
 					"name": "string.unquoted.plain.out.yaml",
 					"patterns": [
-						{ "include": "#azp-expressions" }
+						{ "include": "#expressions" }
 					]
 				}
 			]
@@ -653,7 +653,7 @@
 			},
 			"name": "string.quoted.single.yaml",
 			"patterns": [
-				{ "include": "#azp-expressions" },
+				{ "include": "#expressions" },
 				{
 					"match": "''",
 					"name": "constant.character.escape.single-quoted.yaml"
