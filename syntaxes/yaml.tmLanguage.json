@@ -2,7 +2,9 @@
 	"information_for_contributors": [
 		"This file has been converted from https://github.com/textmate/yaml.tmbundle/blob/master/Syntaxes/YAML.tmLanguage",
 		"It came by way of https://github.com/microsoft/vscode/blob/main/extensions/yaml/syntaxes/yaml.tmLanguage.json",
-		"and should track to that file."
+		"and should track to that file.",
+		"Modified for the Azure Pipelines extension: adds highlighting for the three Azure Pipelines variable/expression syntaxes — `${{ }}` template expressions, `$[ ]` runtime expressions, and `$( )` macros — inside YAML scalars. See repository entries with the `azp-` prefix.",
+		"Refs: https://learn.microsoft.com/azure/devops/pipelines/process/variables#understand-variable-syntax , https://learn.microsoft.com/azure/devops/pipelines/process/template-expressions , https://learn.microsoft.com/azure/devops/pipelines/process/expressions"
 	],
 	"version": "https://github.com/textmate/yaml.tmbundle/commit/e54ceae3b719506dba7e481a77cea4a8b576ae46",
 	"name": "YAML",
@@ -30,6 +32,118 @@
 		}
 	],
 	"repository": {
+		"azp-expressions": {
+			"patterns": [
+				{ "include": "#azp-template-expression" },
+				{ "include": "#azp-runtime-expression" },
+				{ "include": "#azp-macro" }
+			]
+		},
+		"azp-template-expression": {
+			"begin": "\\$\\{\\{",
+			"beginCaptures": {
+				"0": { "name": "punctuation.definition.template-expression.begin.azure-pipelines" }
+			},
+			"end": "\\}\\}",
+			"endCaptures": {
+				"0": { "name": "punctuation.definition.template-expression.end.azure-pipelines" }
+			},
+			"name": "meta.template-expression.azure-pipelines",
+			"patterns": [
+				{ "include": "#azp-expression-body" }
+			]
+		},
+		"azp-runtime-expression": {
+			"begin": "\\$\\[",
+			"beginCaptures": {
+				"0": { "name": "punctuation.definition.runtime-expression.begin.azure-pipelines" }
+			},
+			"end": "\\]",
+			"endCaptures": {
+				"0": { "name": "punctuation.definition.runtime-expression.end.azure-pipelines" }
+			},
+			"name": "meta.runtime-expression.azure-pipelines",
+			"patterns": [
+				{ "include": "#azp-expression-body" }
+			]
+		},
+		"azp-macro": {
+			"match": "(\\$\\()([A-Za-z_][A-Za-z0-9_.]*)(\\))",
+			"name": "meta.macro-expression.azure-pipelines",
+			"captures": {
+				"1": { "name": "punctuation.definition.macro-expression.begin.azure-pipelines" },
+				"2": { "name": "variable.other.macro.azure-pipelines" },
+				"3": { "name": "punctuation.definition.macro-expression.end.azure-pipelines" }
+			}
+		},
+		"azp-expression-body": {
+			"patterns": [
+				{ "include": "#azp-directive-keyword" },
+				{ "include": "#azp-builtin-function" },
+				{ "include": "#azp-job-status-function" },
+				{ "include": "#azp-context-object" },
+				{ "include": "#azp-language-constant" },
+				{ "include": "#azp-string-literal" },
+				{ "include": "#azp-version-literal" },
+				{ "include": "#azp-number-literal" },
+				{ "include": "#azp-punctuation" },
+				{ "include": "#azp-identifier" }
+			]
+		},
+		"azp-directive-keyword": {
+			"match": "\\b(if|elseif|else|each|in|insert)\\b",
+			"name": "keyword.control.directive.azure-pipelines"
+		},
+		"azp-builtin-function": {
+			"match": "\\b(and|or|not|xor|eq|ne|lt|le|gt|ge|contains|startsWith|endsWith|in|notIn|containsValue|coalesce|counter|format|join|split|length|replace|convertToJson|lower|upper|trim|iif)(?=\\s*\\()",
+			"name": "support.function.builtin.azure-pipelines"
+		},
+		"azp-job-status-function": {
+			"match": "\\b(always|succeeded|failed|canceled|succeededOrFailed)(?=\\s*\\()",
+			"name": "support.function.job-status.azure-pipelines"
+		},
+		"azp-context-object": {
+			"match": "\\b(variables|parameters|dependencies|stageDependencies|pipeline|resources|secrets)\\b",
+			"name": "variable.language.context.azure-pipelines"
+		},
+		"azp-language-constant": {
+			"match": "\\b(true|True|TRUE|false|False|FALSE|null|Null|NULL)\\b",
+			"name": "constant.language.azure-pipelines"
+		},
+		"azp-string-literal": {
+			"begin": "'",
+			"beginCaptures": {
+				"0": { "name": "punctuation.definition.string.begin.azure-pipelines" }
+			},
+			"end": "'(?!')",
+			"endCaptures": {
+				"0": { "name": "punctuation.definition.string.end.azure-pipelines" }
+			},
+			"name": "string.quoted.single.azure-pipelines",
+			"patterns": [
+				{ "match": "''", "name": "constant.character.escape.azure-pipelines" }
+			]
+		},
+		"azp-version-literal": {
+			"match": "\\b\\d+(?:\\.\\d+){2,3}\\b",
+			"name": "constant.other.version.azure-pipelines"
+		},
+		"azp-number-literal": {
+			"match": "(?<![A-Za-z_0-9.])-?(?:\\d+\\.\\d+|\\.\\d+|\\d+)\\b",
+			"name": "constant.numeric.azure-pipelines"
+		},
+		"azp-punctuation": {
+			"patterns": [
+				{ "match": "[(),]", "name": "punctuation.separator.azure-pipelines" },
+				{ "match": "\\[", "name": "punctuation.section.brackets.begin.azure-pipelines" },
+				{ "match": "\\]", "name": "punctuation.section.brackets.end.azure-pipelines" },
+				{ "match": "\\.", "name": "punctuation.accessor.azure-pipelines" }
+			]
+		},
+		"azp-identifier": {
+			"match": "[A-Za-z_][A-Za-z0-9_]*",
+			"name": "variable.other.azure-pipelines"
+		},
 		"block-collection": {
 			"patterns": [
 				{
@@ -52,6 +166,7 @@
 				{
 					"include": "#prototype"
 				},
+				{ "include": "#azp-expressions" },
 				{
 					"include": "#block-scalar"
 				},
@@ -68,6 +183,7 @@
 		},
 		"block-pair": {
 			"patterns": [
+				{ "include": "#azp-expressions" },
 				{
 					"begin": "\\?",
 					"beginCaptures": {
@@ -107,7 +223,10 @@
 							},
 							"contentName": "entity.name.tag.yaml",
 							"end": "(?x)\n                                (?=\n                                      \\s* $\n                                    | \\s+ \\#\n                                    | \\s* : (\\s|$)\n                                )\n                            ",
-							"name": "string.unquoted.plain.out.yaml"
+							"name": "string.unquoted.plain.out.yaml",
+							"patterns": [
+								{ "include": "#azp-expressions" }
+							]
 						}
 					]
 				},
@@ -149,7 +268,10 @@
 				{
 					"begin": "^([ ]+)(?! )",
 					"end": "^(?!\\1|\\s*$)",
-					"name": "string.unquoted.block.yaml"
+					"name": "string.unquoted.block.yaml",
+					"patterns": [
+						{ "include": "#azp-expressions" }
+					]
 				}
 			]
 		},
@@ -292,6 +414,7 @@
 				{
 					"include": "#prototype"
 				},
+				{ "include": "#azp-expressions" },
 				{
 					"include": "#flow-alias"
 				},
@@ -305,6 +428,7 @@
 		},
 		"flow-pair": {
 			"patterns": [
+				{ "include": "#azp-expressions" },
 				{
 					"begin": "\\?",
 					"beginCaptures": {
@@ -357,7 +481,10 @@
 							},
 							"contentName": "entity.name.tag.yaml",
 							"end": "(?x)\n                                (?=\n                                      \\s* $\n                                    | \\s+ \\#\n                                    | \\s* : (\\s|$)\n                                    | \\s* : [\\[\\]{},]\n                                    | \\s* [\\[\\]{},]\n                                )\n                            ",
-							"name": "string.unquoted.plain.in.yaml"
+							"name": "string.unquoted.plain.in.yaml",
+							"patterns": [
+								{ "include": "#azp-expressions" }
+							]
 						}
 					]
 				},
@@ -383,6 +510,7 @@
 		},
 		"flow-scalar": {
 			"patterns": [
+				{ "include": "#azp-expressions" },
 				{
 					"include": "#flow-scalar-double-quoted"
 				},
@@ -409,6 +537,7 @@
 			},
 			"name": "string.quoted.double.yaml",
 			"patterns": [
+				{ "include": "#azp-expressions" },
 				{
 					"match": "\\\\([0abtnvfre \"/\\\\N_Lp]|x\\d\\d|u\\d{4}|U\\d{8})",
 					"name": "constant.character.escape.yaml"
@@ -427,7 +556,10 @@
 				{
 					"begin": "(?x)\n                          [^\\s[-?:,\\[\\]{}#&*!|>'\"%@`]]\n                        | [?:-] [^\\s[\\[\\]{},]]\n                    ",
 					"end": "(?x)\n                        (?=\n                              \\s* $\n                            | \\s+ \\#\n                            | \\s* : (\\s|$)\n                            | \\s* : [\\[\\]{},]\n                            | \\s* [\\[\\]{},]\n                        )\n                    ",
-					"name": "string.unquoted.plain.in.yaml"
+					"name": "string.unquoted.plain.in.yaml",
+					"patterns": [
+						{ "include": "#azp-expressions" }
+					]
 				}
 			]
 		},
@@ -469,7 +601,10 @@
 				{
 					"begin": "(?x)\n                          [^\\s[-?:,\\[\\]{}#&*!|>'\"%@`]]\n                        | [?:-] \\S\n                    ",
 					"end": "(?x)\n                        (?=\n                              \\s* $\n                            | \\s+ \\#\n                            | \\s* : (\\s|$)\n                        )\n                    ",
-					"name": "string.unquoted.plain.out.yaml"
+					"name": "string.unquoted.plain.out.yaml",
+					"patterns": [
+						{ "include": "#azp-expressions" }
+					]
 				}
 			]
 		},
@@ -518,6 +653,7 @@
 			},
 			"name": "string.quoted.single.yaml",
 			"patterns": [
+				{ "include": "#azp-expressions" },
 				{
 					"match": "''",
 					"name": "constant.character.escape.single-quoted.yaml"
