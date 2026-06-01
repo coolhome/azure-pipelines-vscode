@@ -1,12 +1,45 @@
-parameters:
-  variables: {}
+# Demonstrates highlighting for the three Azure Pipelines expression syntaxes.
+# Refs:
+#   https://learn.microsoft.com/azure/devops/pipelines/process/variables#understand-variable-syntax
+#   https://learn.microsoft.com/azure/devops/pipelines/process/template-expressions
+#   https://learn.microsoft.com/azure/devops/pipelines/process/expressions
 
-phases:
-- phase: build
-  variables:
-    configuration: debug
-    arch: x86
-    ${{ insert }}: ${{ parameters.variables }}
+parameters:
+- name: env
+  type: string
+  default: dev
+
+variables:
+  # ${{ }} -- template (compile-time) expression
+  envUpper: ${{ upper(parameters.env) }}
+  envUpper2: '${{ upper(parameters.env) }}'
+  envUpper3: "${{ upper(parameters.env) }}"
+
+  # $[ ] -- runtime expression (must occupy the entire RHS)
+  isMain: $[ eq(variables['Build.SourceBranch'], 'refs/heads/main') ]
+  isMain2: '$[ eq(variables['Build.SourceBranch'], 'refs/heads/main') ]'
+  isMain3: "$[ eq(variables['Build.SourceBranch'], 'refs/heads/main') ]"
+  buildNum: $[ counter('rel', 100) ]
+
+jobs:
+# Template expression in a key position drives the job name.
+- job: Build_${{ parameters.env }}
+  condition: and(succeeded(), eq(variables.isMain, 'True'))
   steps:
-  - task: MSBuild@1
-  - task: VSTest@2
+  # $( ) -- macro (agent-side late substitution, only inside task inputs)
+  - script: echo "Deploying $(serviceName) to $(env) build $(buildNum)"
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: $(azureServiceConnection)
+      scriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: |
+        echo "branch=$(Build.SourceBranch) version=${{ parameters.env }} commit=${{ upper(variables['Build.SourceVersion']) }}"
+
+  # Conditional insertion -- template directive.
+  - ${{ if eq(parameters.env, 'prod') }}:
+    - script: echo "prod-only step"
+
+  # Iterative insertion.
+  - ${{ each region in split('eastus,westus', ',') }}:
+    - script: echo "Region $(region)"

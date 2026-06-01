@@ -86,8 +86,22 @@
 				{ "include": "#string-literal" },
 				{ "include": "#version-literal" },
 				{ "include": "#number-literal" },
+				{ "include": "#brackets" },
 				{ "include": "#punctuation" },
 				{ "include": "#identifier" }
+			]
+		},
+		"brackets": {
+			"begin": "\\[",
+			"beginCaptures": {
+				"0": { "name": "punctuation.section.brackets.begin.azure-pipelines" }
+			},
+			"end": "\\]",
+			"endCaptures": {
+				"0": { "name": "punctuation.section.brackets.end.azure-pipelines" }
+			},
+			"patterns": [
+				{ "include": "#expression-body" }
 			]
 		},
 		"directive-keyword": {
