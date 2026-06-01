@@ -41,3 +41,9 @@ jobs:
   # Iterative insertion.
   - ${{ each region in split('eastus,westus', ',') }}:
     - script: echo "Region $(region)"
+  - '${{ each region in split(''eastus,westus'', '','') }}':
+    - script: echo "Region $(region)"
+  - "${{ each region in split('eastus,westus', ',') }}":
+    - script: echo "Region $(region)"
+  - "${{ each region in split(\"eastus,westus\", \",\") }}":
+    - script: echo "Region $(region)"
