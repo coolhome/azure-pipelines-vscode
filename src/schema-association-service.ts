@@ -67,7 +67,7 @@ export async function locateSchemaFile(
     }
 
     logger.log(
-        `Using hardcoded schema for workspace folder ${workspaceFolder.name}: ${schemaUri.path}`,
+        `Using hardcoded schema for workspace folder ${workspaceFolder?.name ?? '<none>'}: ${schemaUri.path}`,
         'SchemaDetection');
 
     // TODO: We should update getSchemaAssociations so we don't need to constantly

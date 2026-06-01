@@ -164,9 +164,9 @@
 			"match": "(\\$\\()([A-Za-z_][A-Za-z0-9_.]*)(\\))",
 			"name": "meta.macro.expression.azure-pipelines",
 			"captures": {
-				"1": { "name": "punctuation.definition.macro-expression.begin.azure-pipelines" },
+				"1": { "name": "punctuation.definition.variable.begin.azure-pipelines" },
 				"2": { "name": "variable.other.macro.azure-pipelines" },
-				"3": { "name": "punctuation.definition.macro-expression.end.azure-pipelines" }
+				"3": { "name": "punctuation.definition.variable.end.azure-pipelines" }
 			}
 		},
 		"expression-body": {
@@ -819,7 +819,7 @@
 				},
 				{
 					"begin": "(?x)\n                          [^\\s[-?:,\\[\\]{}#&*!|>'\"%@`]]\n                        | [?:-] [^\\s[\\[\\]{},]]\n                    ",
-					"end": "(?x)\n                        (?=\n                              \\s* $\n                            | \\s+ \\#\n                            | \\s* : (\\s|$)\n                            | \\s* : [\\[\\]{},]\n                            | \\s* [\\[\\]{},]\n                        )\n                    ",
+					"end": "(?x)\n                        (?=\n                              \\s* $\n                            | \\s+ \\#\n                            | \\s* : (\\s|$)\n                            | \\s* : [\\[\\]{},]\n                            | \\s* [\\[\\]{},]\n                            | \\$ (?: \\{\\{ | \\( | \\[ )\n                        )\n                    ",
 					"name": "string.unquoted.plain.in.yaml",
 					"patterns": [
 						{ "include": "#expressions" }
@@ -864,7 +864,7 @@
 				},
 				{
 					"begin": "(?x)\n                          [^\\s[-?:,\\[\\]{}#&*!|>'\"%@`]]\n                        | [?:-] \\S\n                    ",
-					"end": "(?x)\n                        (?=\n                              \\s* $\n                            | \\s+ \\#\n                            | \\s* : (\\s|$)\n                        )\n                    ",
+					"end": "(?x)\n                        (?=\n                              \\s* $\n                            | \\s+ \\#\n                            | \\s* : (\\s|$)\n                            | \\$ (?: \\{\\{ | \\( | \\[ )\n                        )\n                    ",
 					"name": "string.unquoted.plain.out.yaml",
 					"patterns": [
 						{ "include": "#expressions" }
