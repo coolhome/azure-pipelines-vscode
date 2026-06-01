@@ -42,7 +42,8 @@
 	"extensions": {
 		"recommendations": [
 			"dbaeumer.vscode-eslint",
-			"ms-vscode.azure-account"
+			"ms-vscode.azure-account",
+			"ms-azuretools.vscode-azureresourcegroups"
 		]
 	},
 	"launch": {
@@ -54,10 +55,11 @@
 				"request": "launch",
 				"runtimeExecutable": "${execPath}",
 				"args": [
+					"--disable-extensions",
 					"--extensionDevelopmentPath=${workspaceFolder:azure-pipelines-vscode}",
+					"--install-extension=ms-azuretools.vscode-azureresourcegroups",
 					"--install-extension=ms-vscode.azure-account",
-					// "${workspaceFolder:azure-pipelines-vscode}/examples/expressionSyntaxes.yml"
-					"${workspaceFolder:azure-pipelines-vscode}/examples/complexTemplate.yml"
+					"${workspaceFolder:azure-pipelines-vscode}/examples/"
 				],
 				"outFiles": [
 					"${workspaceFolder:azure-pipelines-vscode}/dist/**/*.js"
