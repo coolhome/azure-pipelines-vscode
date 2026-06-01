@@ -1,0 +1,6 @@
+# SYNTAX TEST "source.yaml" "macro expression $( )"
+
+connection: $(azureServiceConnection)
+#           ^^ meta.macro-expression.azure-pipelines punctuation.definition.macro-expression.begin.azure-pipelines
+#             ^^^^^^^^^^^^^^^^^^^^^^ meta.macro-expression.azure-pipelines variable.other.macro.azure-pipelines
+#                                   ^ meta.macro-expression.azure-pipelines punctuation.definition.macro-expression.end.azure-pipelines

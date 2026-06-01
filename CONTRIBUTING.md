@@ -77,9 +77,18 @@ matches and to find the scope name to target from a theme.
 ### Tests
 
 ```bash
-npm run unittest   # mocha unit tests
-npm test           # full extension test suite (boots VS Code)
+npm run test:grammar         # TextMate grammar scope assertions (fast, no VS Code)
+npm run test:grammar:watch   # rerun on changes to syntaxes/ or test/grammar/
+npm run unittest             # mocha unit tests
+npm test                     # full extension test suite (boots VS Code)
 ```
+
+Grammar tests live in `test/grammar/*.yml` and use
+[`vscode-tmgrammar-test`](https://github.com/PanAeon/vscode-tmgrammar-test).
+Each test file pins the scope stack at specific character ranges with `^`
+annotations, so a regression in `syntaxes/yaml.tmLanguage.json` fails the
+suite with a precise diff. Add a test whenever you add or change a
+grammar pattern.
 
 The **Extension Tests** launch configuration in `.vscode/launch.json`
 runs the full suite under the VS Code debugger.
