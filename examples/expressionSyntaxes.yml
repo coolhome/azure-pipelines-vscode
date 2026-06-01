@@ -30,7 +30,7 @@ jobs:
       scriptType: bash
       scriptLocation: inlineScript
       inlineScript: |
-        echo "branch=$(Build.SourceBranch) version=${{ parameters.env }}"
+        echo "branch=$(Build.SourceBranch) version=${{ parameters.env }} commit=${{ upper(variables['Build.SourceVersion']) }}"
 
   # Conditional insertion -- template directive.
   - ${{ if eq(parameters.env, 'prod') }}:
