@@ -56,7 +56,8 @@
 				"args": [
 					"--extensionDevelopmentPath=${workspaceFolder:azure-pipelines-vscode}",
 					"--install-extension=ms-vscode.azure-account",
-					"${workspaceFolder:azure-pipelines-vscode}/examples/expressionSyntaxes.yml"
+					// "${workspaceFolder:azure-pipelines-vscode}/examples/expressionSyntaxes.yml"
+					"${workspaceFolder:azure-pipelines-vscode}/examples/complexTemplate.yml"
 				],
 				"outFiles": [
 					"${workspaceFolder:azure-pipelines-vscode}/dist/**/*.js"
