@@ -164,9 +164,9 @@
 			"match": "(\\$\\()([A-Za-z_][A-Za-z0-9_.]*)(\\))",
 			"name": "meta.macro.expression.azure-pipelines",
 			"captures": {
-				"1": { "name": "punctuation.definition.macro-expression.begin.azure-pipelines" },
+				"1": { "name": "punctuation.definition.variable.begin.azure-pipelines" },
 				"2": { "name": "variable.other.macro.azure-pipelines" },
-				"3": { "name": "punctuation.definition.macro-expression.end.azure-pipelines" }
+				"3": { "name": "punctuation.definition.variable.end.azure-pipelines" }
 			}
 		},
 		"expression-body": {
