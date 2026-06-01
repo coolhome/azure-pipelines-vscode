@@ -34,8 +34,8 @@
 				{ "scope": "punctuation.definition.template-expression.end.azure-pipelines",   "settings": { "foreground": "#C586C0", "fontStyle": "bold" } },
 				{ "scope": "punctuation.definition.runtime-expression.begin.azure-pipelines",  "settings": { "foreground": "#4FC1FF", "fontStyle": "bold" } },
 				{ "scope": "punctuation.definition.runtime-expression.end.azure-pipelines",    "settings": { "foreground": "#4FC1FF", "fontStyle": "bold" } },
-				{ "scope": "punctuation.definition.variable.begin.azure-pipelines",            "settings": { "foreground": "#DCDCAA", "fontStyle": "bold" } },
-				{ "scope": "punctuation.definition.variable.end.azure-pipelines",              "settings": { "foreground": "#DCDCAA", "fontStyle": "bold" } }
+				{ "scope": "variable.other.macro.punctuation.begin.azure-pipelines",           "settings": { "foreground": "#DCDCAA", "fontStyle": "bold" } },
+				{ "scope": "variable.other.macro.punctuation.end.azure-pipelines",             "settings": { "foreground": "#DCDCAA", "fontStyle": "bold" } }
 			]
 		}
 	},
