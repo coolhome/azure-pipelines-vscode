@@ -3,9 +3,9 @@
 envUpper: ${{ upper(parameters.env) }}
 #         ^^^ meta.template-expression.azure-pipelines punctuation.definition.template-expression.begin.azure-pipelines
 #             ^^^^^ meta.template-expression.azure-pipelines support.function.builtin.azure-pipelines
-#                  ^ meta.template-expression.azure-pipelines punctuation.separator.azure-pipelines
+#                  ^ meta.template-expression.azure-pipelines meta.brace.round.azure-pipelines
 #                   ^^^^^^^^^^ meta.template-expression.azure-pipelines variable.language.context.azure-pipelines
 #                             ^ meta.template-expression.azure-pipelines punctuation.accessor.azure-pipelines
 #                              ^^^ meta.template-expression.azure-pipelines
-#                                 ^ meta.template-expression.azure-pipelines punctuation.separator.azure-pipelines
+#                                 ^ meta.template-expression.azure-pipelines meta.brace.round.azure-pipelines
 #                                    ^^ meta.template-expression.azure-pipelines punctuation.definition.template-expression.end.azure-pipelines

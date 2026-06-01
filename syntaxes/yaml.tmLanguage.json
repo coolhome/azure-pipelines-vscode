@@ -323,7 +323,9 @@
 		},
 		"punctuation": {
 			"patterns": [
-				{ "match": "[(),]", "name": "punctuation.separator.azure-pipelines" },
+				{ "match": "\\(", "name": "meta.brace.round.azure-pipelines" },
+				{ "match": "\\)", "name": "meta.brace.round.azure-pipelines" },
+				{ "match": ",", "name": "punctuation.separator.comma.azure-pipelines" },
 				{ "match": "\\[", "name": "punctuation.section.brackets.begin.azure-pipelines" },
 				{ "match": "\\]", "name": "punctuation.section.brackets.end.azure-pipelines" },
 				{ "match": "\\.", "name": "punctuation.accessor.azure-pipelines" }
