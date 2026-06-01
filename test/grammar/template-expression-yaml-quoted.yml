@@ -2,30 +2,30 @@
 
 # Baseline: plain (unquoted) YAML scalar.
 - ${{ each region in split('eastus,westus', ',') }}:
-#                          ^ meta.template-expression.azure-pipelines string.quoted.single.azure-pipelines punctuation.definition.string.begin.azure-pipelines
-#                           ^^^^^^^^^^^^^ meta.template-expression.azure-pipelines string.quoted.single.azure-pipelines
-#                                        ^ meta.template-expression.azure-pipelines string.quoted.single.azure-pipelines punctuation.definition.string.end.azure-pipelines
+#                          ^ meta.template.expression.azure-pipelines string.quoted.single.azure-pipelines punctuation.definition.string.begin.azure-pipelines
+#                           ^^^^^^^^^^^^^ meta.template.expression.azure-pipelines string.quoted.single.azure-pipelines
+#                                        ^ meta.template.expression.azure-pipelines string.quoted.single.azure-pipelines punctuation.definition.string.end.azure-pipelines
 
 # YAML single-quoted scalar: each ' inside the expression is doubled.
 - '${{ each region in split(''eastus,westus'', '','') }}':
-#                           ^^ meta.template-expression.azure-pipelines string.quoted.single.azure-pipelines punctuation.definition.string.begin.azure-pipelines
-#                             ^^^^^^^^^^^^^ meta.template-expression.azure-pipelines string.quoted.single.azure-pipelines
-#                                          ^^ meta.template-expression.azure-pipelines string.quoted.single.azure-pipelines punctuation.definition.string.end.azure-pipelines
-#                                              ^^ meta.template-expression.azure-pipelines string.quoted.single.azure-pipelines punctuation.definition.string.begin.azure-pipelines
-#                                                ^ meta.template-expression.azure-pipelines string.quoted.single.azure-pipelines
-#                                                 ^^ meta.template-expression.azure-pipelines string.quoted.single.azure-pipelines punctuation.definition.string.end.azure-pipelines
+#                           ^^ meta.template.expression.azure-pipelines string.quoted.single.azure-pipelines punctuation.definition.string.begin.azure-pipelines
+#                             ^^^^^^^^^^^^^ meta.template.expression.azure-pipelines string.quoted.single.azure-pipelines
+#                                          ^^ meta.template.expression.azure-pipelines string.quoted.single.azure-pipelines punctuation.definition.string.end.azure-pipelines
+#                                              ^^ meta.template.expression.azure-pipelines string.quoted.single.azure-pipelines punctuation.definition.string.begin.azure-pipelines
+#                                                ^ meta.template.expression.azure-pipelines string.quoted.single.azure-pipelines
+#                                                 ^^ meta.template.expression.azure-pipelines string.quoted.single.azure-pipelines punctuation.definition.string.end.azure-pipelines
 
 # YAML double-quoted scalar with plain ' inside (no escape needed).
 - "${{ each region in split('eastus,westus', ',') }}":
-#                           ^ meta.template-expression.azure-pipelines string.quoted.single.azure-pipelines punctuation.definition.string.begin.azure-pipelines
-#                            ^^^^^^^^^^^^^ meta.template-expression.azure-pipelines string.quoted.single.azure-pipelines
-#                                         ^ meta.template-expression.azure-pipelines string.quoted.single.azure-pipelines punctuation.definition.string.end.azure-pipelines
+#                           ^ meta.template.expression.azure-pipelines string.quoted.single.azure-pipelines punctuation.definition.string.begin.azure-pipelines
+#                            ^^^^^^^^^^^^^ meta.template.expression.azure-pipelines string.quoted.single.azure-pipelines
+#                                         ^ meta.template.expression.azure-pipelines string.quoted.single.azure-pipelines punctuation.definition.string.end.azure-pipelines
 
 # YAML double-quoted scalar using \" to delimit a string inside the expression.
 - "${{ each region in split(\"eastus,westus\", \",\") }}":
-#                           ^^ meta.template-expression.azure-pipelines string.quoted.double.azure-pipelines punctuation.definition.string.begin.azure-pipelines
-#                             ^^^^^^^^^^^^^ meta.template-expression.azure-pipelines string.quoted.double.azure-pipelines
-#                                          ^^ meta.template-expression.azure-pipelines string.quoted.double.azure-pipelines punctuation.definition.string.end.azure-pipelines
-#                                              ^^ meta.template-expression.azure-pipelines string.quoted.double.azure-pipelines punctuation.definition.string.begin.azure-pipelines
-#                                                ^ meta.template-expression.azure-pipelines string.quoted.double.azure-pipelines
-#                                                 ^^ meta.template-expression.azure-pipelines string.quoted.double.azure-pipelines punctuation.definition.string.end.azure-pipelines
+#                           ^^ meta.template.expression.azure-pipelines string.quoted.double.azure-pipelines punctuation.definition.string.begin.azure-pipelines
+#                             ^^^^^^^^^^^^^ meta.template.expression.azure-pipelines string.quoted.double.azure-pipelines
+#                                          ^^ meta.template.expression.azure-pipelines string.quoted.double.azure-pipelines punctuation.definition.string.end.azure-pipelines
+#                                              ^^ meta.template.expression.azure-pipelines string.quoted.double.azure-pipelines punctuation.definition.string.begin.azure-pipelines
+#                                                ^ meta.template.expression.azure-pipelines string.quoted.double.azure-pipelines
+#                                                 ^^ meta.template.expression.azure-pipelines string.quoted.double.azure-pipelines punctuation.definition.string.end.azure-pipelines

@@ -1,11 +1,11 @@
 # SYNTAX TEST "source.yaml" "template expression ${{ }}"
 
 envUpper: ${{ upper(parameters.env) }}
-#         ^^^ meta.template-expression.azure-pipelines punctuation.definition.template-expression.begin.azure-pipelines
-#             ^^^^^ meta.template-expression.azure-pipelines support.function.builtin.azure-pipelines
-#                  ^ meta.template-expression.azure-pipelines meta.brace.round.azure-pipelines
-#                   ^^^^^^^^^^ meta.template-expression.azure-pipelines variable.language.context.azure-pipelines
-#                             ^ meta.template-expression.azure-pipelines punctuation.accessor.azure-pipelines
-#                              ^^^ meta.template-expression.azure-pipelines
-#                                 ^ meta.template-expression.azure-pipelines meta.brace.round.azure-pipelines
-#                                    ^^ meta.template-expression.azure-pipelines punctuation.definition.template-expression.end.azure-pipelines
+#         ^^^ meta.template.expression.azure-pipelines punctuation.definition.template-expression.begin.azure-pipelines
+#             ^^^^^ meta.template.expression.azure-pipelines meta.function-call.azure-pipelines support.function.builtin.azure-pipelines
+#                  ^ meta.template.expression.azure-pipelines meta.function-call.azure-pipelines punctuation.section.arguments.begin.azure-pipelines
+#                   ^^^^^^^^^^ meta.template.expression.azure-pipelines meta.function-call.azure-pipelines variable.language.context.azure-pipelines
+#                             ^ meta.template.expression.azure-pipelines meta.function-call.azure-pipelines punctuation.accessor.azure-pipelines
+#                              ^^^ meta.template.expression.azure-pipelines meta.function-call.azure-pipelines
+#                                 ^ meta.template.expression.azure-pipelines meta.function-call.azure-pipelines punctuation.section.arguments.end.azure-pipelines
+#                                    ^^ meta.template.expression.azure-pipelines punctuation.definition.template-expression.end.azure-pipelines
