@@ -1,0 +1,30 @@
+# SYNTAX TEST "source.yaml" "template expression in key position ${{ }}:"
+
+jobs:
+- ${{ if eq(parameters.foo, true) }}:
+# ^^^ meta.template-expression.azure-pipelines punctuation.definition.template-expression.begin.azure-pipelines
+#     ^^ meta.template-expression.azure-pipelines keyword.control.directive.azure-pipelines
+#        ^^ meta.template-expression.azure-pipelines support.function.builtin.azure-pipelines
+#           ^^^^^^^^^^ meta.template-expression.azure-pipelines variable.language.context.azure-pipelines
+#                     ^ meta.template-expression.azure-pipelines punctuation.accessor.azure-pipelines
+#                           ^^^^ meta.template-expression.azure-pipelines constant.language.azure-pipelines
+#                                 ^^ meta.template-expression.azure-pipelines punctuation.definition.template-expression.end.azure-pipelines
+#                                   ^ punctuation.separator.key-value.mapping.yaml
+
+variables:
+  ${{ if eq(parameters.env, 'prod') }}:
+# ^^^ meta.template-expression.azure-pipelines punctuation.definition.template-expression.begin.azure-pipelines
+#     ^^ meta.template-expression.azure-pipelines keyword.control.directive.azure-pipelines
+#        ^^ meta.template-expression.azure-pipelines support.function.builtin.azure-pipelines
+#           ^^^^^^^^^^ meta.template-expression.azure-pipelines variable.language.context.azure-pipelines
+#                           ^^^^^^ meta.template-expression.azure-pipelines string.quoted.single.azure-pipelines
+#                                   ^^ meta.template-expression.azure-pipelines punctuation.definition.template-expression.end.azure-pipelines
+#                                     ^ punctuation.separator.key-value.mapping.yaml
+
+  ${{ each env in parameters.envs }}:
+# ^^^ meta.template-expression.azure-pipelines punctuation.definition.template-expression.begin.azure-pipelines
+#     ^^^^ meta.template-expression.azure-pipelines keyword.control.directive.azure-pipelines
+#              ^^ meta.template-expression.azure-pipelines keyword.control.directive.azure-pipelines
+#                 ^^^^^^^^^^ meta.template-expression.azure-pipelines variable.language.context.azure-pipelines
+#                                 ^^ meta.template-expression.azure-pipelines punctuation.definition.template-expression.end.azure-pipelines
+#                                   ^ punctuation.separator.key-value.mapping.yaml

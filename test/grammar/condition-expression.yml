@@ -1,0 +1,16 @@
+# SYNTAX TEST "source.yaml" "implicit condition expression"
+
+condition: succeeded()
+#^^^^^^^^ entity.name.tag.yaml
+#        ^ punctuation.separator.key-value.mapping.yaml
+#          ^^^^^^^^^ support.function.job-status.azure-pipelines
+
+condition: and(succeeded(), eq(variables.isMain, 'True'))
+#^^^^^^^^ entity.name.tag.yaml
+#          ^^^ support.function.builtin.azure-pipelines
+#              ^^^^^^^^^ support.function.job-status.azure-pipelines
+
+  condition: ne(variables['Build.Reason'], 'PullRequest')
+# ^^^^^^^^ entity.name.tag.yaml
+#            ^^ support.function.builtin.azure-pipelines
+#               ^^^^^^^^^ variable.language.context.azure-pipelines

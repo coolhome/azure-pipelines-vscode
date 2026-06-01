@@ -39,6 +39,29 @@
 				{ "include": "#macro" }
 			]
 		},
+		"template-expression-key": {
+			"match": "(\\$\\{\\{)(.*?)(\\}\\})\\s*(:)(?=\\s|$)",
+			"captures": {
+				"1": { "name": "punctuation.definition.template-expression.begin.azure-pipelines" },
+				"2": { "patterns": [ { "include": "#expression-body" } ] },
+				"3": { "name": "punctuation.definition.template-expression.end.azure-pipelines" },
+				"4": { "name": "punctuation.separator.key-value.mapping.yaml" }
+			},
+			"name": "meta.template-expression.azure-pipelines"
+		},
+		"implicit-expression-pair": {
+			"begin": "(?:^|(?<=[\\s-]))(condition)\\s*(:)[ \\t]+(?=[^'\"\\s|>])",
+			"beginCaptures": {
+				"1": { "name": "entity.name.tag.yaml" },
+				"2": { "name": "punctuation.separator.key-value.mapping.yaml" }
+			},
+			"end": "(?=\\s*$|\\s+#)",
+			"name": "meta.implicit-expression.azure-pipelines",
+			"patterns": [
+				{ "include": "#expressions" },
+				{ "include": "#expression-body" }
+			]
+		},
 		"template-expression": {
 			"begin": "\\$\\{\\{",
 			"beginCaptures": {
@@ -197,6 +220,8 @@
 		},
 		"block-pair": {
 			"patterns": [
+				{ "include": "#template-expression-key" },
+				{ "include": "#implicit-expression-pair" },
 				{ "include": "#expressions" },
 				{
 					"begin": "\\?",
@@ -442,6 +467,7 @@
 		},
 		"flow-pair": {
 			"patterns": [
+				{ "include": "#template-expression-key" },
 				{ "include": "#expressions" },
 				{
 					"begin": "\\?",
