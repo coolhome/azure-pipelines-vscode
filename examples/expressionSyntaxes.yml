@@ -12,6 +12,8 @@ parameters:
 variables:
   # ${{ }} -- template (compile-time) expression
   envUpper: ${{ upper(parameters.env) }}
+  envUpper2: '${{ upper(parameters.env) }}'
+  envUpper3: "${{ upper(parameters.env) }}"
 
   # $[ ] -- runtime expression (must occupy the entire RHS)
   isMain: $[ eq(variables['Build.SourceBranch'], 'refs/heads/main') ]
