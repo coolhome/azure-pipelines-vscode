@@ -30,10 +30,11 @@
 				{ "scope": "constant.numeric.azure-pipelines",         "settings": { "foreground": "#B5CEA8" } },
 				{ "scope": "constant.other.version.azure-pipelines",   "settings": { "foreground": "#B5CEA8" } },
 				{ "scope": "string.quoted.single.azure-pipelines",     "settings": { "foreground": "#CE9178" } },
-				{ "scope": "punctuation.definition.template-expression.begin.azure-pipelines", "settings": { "foreground": "#C586C0", "fontStyle": "bold" } },
-				{ "scope": "punctuation.definition.template-expression.end.azure-pipelines",   "settings": { "foreground": "#C586C0", "fontStyle": "bold" } },
-				{ "scope": "punctuation.definition.runtime-expression.begin.azure-pipelines",  "settings": { "foreground": "#4FC1FF", "fontStyle": "bold" } },
-				{ "scope": "punctuation.definition.runtime-expression.end.azure-pipelines",    "settings": { "foreground": "#4FC1FF", "fontStyle": "bold" } },
+				{ "scope": "punctuation.definition.expression.sigil.azure-pipelines",          "settings": { "foreground": "#FFFFFF", "fontStyle": "bold" } },
+				{ "scope": "punctuation.definition.template-expression.begin.azure-pipelines", "settings": { "foreground": "#DCDCAA", "fontStyle": "bold" } },
+				{ "scope": "punctuation.definition.template-expression.end.azure-pipelines",   "settings": { "foreground": "#DCDCAA", "fontStyle": "bold" } },
+				{ "scope": "punctuation.definition.runtime-expression.begin.azure-pipelines",  "settings": { "foreground": "#DCDCAA", "fontStyle": "bold" } },
+				{ "scope": "punctuation.definition.runtime-expression.end.azure-pipelines",    "settings": { "foreground": "#DCDCAA", "fontStyle": "bold" } },
 				{ "scope": "punctuation.definition.variable.begin.azure-pipelines",            "settings": { "foreground": "#DCDCAA", "fontStyle": "bold" } },
 				{ "scope": "punctuation.definition.variable.end.azure-pipelines",              "settings": { "foreground": "#DCDCAA", "fontStyle": "bold" } }
 			]
