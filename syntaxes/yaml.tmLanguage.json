@@ -39,6 +39,20 @@
 				{ "include": "#macro" }
 			]
 		},
+		"expressions-yaml-single-quoted": {
+			"patterns": [
+				{ "include": "#template-expression-yaml-single-quoted" },
+				{ "include": "#runtime-expression-yaml-single-quoted" },
+				{ "include": "#macro" }
+			]
+		},
+		"expressions-yaml-double-quoted": {
+			"patterns": [
+				{ "include": "#template-expression-yaml-double-quoted" },
+				{ "include": "#runtime-expression-yaml-double-quoted" },
+				{ "include": "#macro" }
+			]
+		},
 		"template-expression-key": {
 			"match": "(\\$\\{\\{)(.*?)(\\}\\})\\s*(:)(?=\\s|$)",
 			"captures": {
@@ -90,6 +104,62 @@
 				{ "include": "#expression-body" }
 			]
 		},
+		"template-expression-yaml-single-quoted": {
+			"begin": "\\$\\{\\{",
+			"beginCaptures": {
+				"0": { "name": "punctuation.definition.template-expression.begin.azure-pipelines" }
+			},
+			"end": "\\}\\}",
+			"endCaptures": {
+				"0": { "name": "punctuation.definition.template-expression.end.azure-pipelines" }
+			},
+			"name": "meta.template-expression.azure-pipelines",
+			"patterns": [
+				{ "include": "#expression-body-yaml-single-quoted" }
+			]
+		},
+		"runtime-expression-yaml-single-quoted": {
+			"begin": "\\$\\[",
+			"beginCaptures": {
+				"0": { "name": "punctuation.definition.runtime-expression.begin.azure-pipelines" }
+			},
+			"end": "\\]",
+			"endCaptures": {
+				"0": { "name": "punctuation.definition.runtime-expression.end.azure-pipelines" }
+			},
+			"name": "meta.runtime-expression.azure-pipelines",
+			"patterns": [
+				{ "include": "#expression-body-yaml-single-quoted" }
+			]
+		},
+		"template-expression-yaml-double-quoted": {
+			"begin": "\\$\\{\\{",
+			"beginCaptures": {
+				"0": { "name": "punctuation.definition.template-expression.begin.azure-pipelines" }
+			},
+			"end": "\\}\\}",
+			"endCaptures": {
+				"0": { "name": "punctuation.definition.template-expression.end.azure-pipelines" }
+			},
+			"name": "meta.template-expression.azure-pipelines",
+			"patterns": [
+				{ "include": "#expression-body-yaml-double-quoted" }
+			]
+		},
+		"runtime-expression-yaml-double-quoted": {
+			"begin": "\\$\\[",
+			"beginCaptures": {
+				"0": { "name": "punctuation.definition.runtime-expression.begin.azure-pipelines" }
+			},
+			"end": "\\]",
+			"endCaptures": {
+				"0": { "name": "punctuation.definition.runtime-expression.end.azure-pipelines" }
+			},
+			"name": "meta.runtime-expression.azure-pipelines",
+			"patterns": [
+				{ "include": "#expression-body-yaml-double-quoted" }
+			]
+		},
 		"macro": {
 			"match": "(\\$\\()([A-Za-z_][A-Za-z0-9_.]*)(\\))",
 			"name": "meta.macro-expression.azure-pipelines",
@@ -114,6 +184,37 @@
 				{ "include": "#identifier" }
 			]
 		},
+		"expression-body-yaml-single-quoted": {
+			"patterns": [
+				{ "include": "#directive-keyword" },
+				{ "include": "#builtin-function" },
+				{ "include": "#job-status-function" },
+				{ "include": "#context-object" },
+				{ "include": "#language-constant" },
+				{ "include": "#string-literal-yaml-single-quoted" },
+				{ "include": "#version-literal" },
+				{ "include": "#number-literal" },
+				{ "include": "#brackets-yaml-single-quoted" },
+				{ "include": "#punctuation" },
+				{ "include": "#identifier" }
+			]
+		},
+		"expression-body-yaml-double-quoted": {
+			"patterns": [
+				{ "include": "#directive-keyword" },
+				{ "include": "#builtin-function" },
+				{ "include": "#job-status-function" },
+				{ "include": "#context-object" },
+				{ "include": "#language-constant" },
+				{ "include": "#string-literal-yaml-double-quoted" },
+				{ "include": "#string-literal" },
+				{ "include": "#version-literal" },
+				{ "include": "#number-literal" },
+				{ "include": "#brackets-yaml-double-quoted" },
+				{ "include": "#punctuation" },
+				{ "include": "#identifier" }
+			]
+		},
 		"brackets": {
 			"begin": "\\[",
 			"beginCaptures": {
@@ -125,6 +226,32 @@
 			},
 			"patterns": [
 				{ "include": "#expression-body" }
+			]
+		},
+		"brackets-yaml-single-quoted": {
+			"begin": "\\[",
+			"beginCaptures": {
+				"0": { "name": "punctuation.section.brackets.begin.azure-pipelines" }
+			},
+			"end": "\\]",
+			"endCaptures": {
+				"0": { "name": "punctuation.section.brackets.end.azure-pipelines" }
+			},
+			"patterns": [
+				{ "include": "#expression-body-yaml-single-quoted" }
+			]
+		},
+		"brackets-yaml-double-quoted": {
+			"begin": "\\[",
+			"beginCaptures": {
+				"0": { "name": "punctuation.section.brackets.begin.azure-pipelines" }
+			},
+			"end": "\\]",
+			"endCaptures": {
+				"0": { "name": "punctuation.section.brackets.end.azure-pipelines" }
+			},
+			"patterns": [
+				{ "include": "#expression-body-yaml-double-quoted" }
 			]
 		},
 		"directive-keyword": {
@@ -160,6 +287,31 @@
 			"patterns": [
 				{ "match": "''", "name": "constant.character.escape.azure-pipelines" }
 			]
+		},
+		"string-literal-yaml-single-quoted": {
+			"begin": "''",
+			"beginCaptures": {
+				"0": { "name": "punctuation.definition.string.begin.azure-pipelines" }
+			},
+			"end": "''(?!')",
+			"endCaptures": {
+				"0": { "name": "punctuation.definition.string.end.azure-pipelines" }
+			},
+			"name": "string.quoted.single.azure-pipelines",
+			"patterns": [
+				{ "match": "''''", "name": "constant.character.escape.azure-pipelines" }
+			]
+		},
+		"string-literal-yaml-double-quoted": {
+			"begin": "\\\\\"",
+			"beginCaptures": {
+				"0": { "name": "punctuation.definition.string.begin.azure-pipelines" }
+			},
+			"end": "\\\\\"",
+			"endCaptures": {
+				"0": { "name": "punctuation.definition.string.end.azure-pipelines" }
+			},
+			"name": "string.quoted.double.azure-pipelines"
 		},
 		"version-literal": {
 			"match": "\\b\\d+(?:\\.\\d+){2,3}\\b",
@@ -577,7 +729,7 @@
 			},
 			"name": "string.quoted.double.yaml",
 			"patterns": [
-				{ "include": "#expressions" },
+				{ "include": "#expressions-yaml-double-quoted" },
 				{
 					"match": "\\\\([0abtnvfre \"/\\\\N_Lp]|x\\d\\d|u\\d{4}|U\\d{8})",
 					"name": "constant.character.escape.yaml"
@@ -693,7 +845,7 @@
 			},
 			"name": "string.quoted.single.yaml",
 			"patterns": [
-				{ "include": "#expressions" },
+				{ "include": "#expressions-yaml-single-quoted" },
 				{
 					"match": "''",
 					"name": "constant.character.escape.single-quoted.yaml"
