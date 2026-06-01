@@ -1,13 +1,13 @@
 # SYNTAX TEST "source.yaml" "runtime expression $[ ]"
 
 isMain: $[ eq(variables['Build.SourceBranch'], 'refs/heads/main') ]
-#       ^^ meta.runtime-expression.azure-pipelines punctuation.definition.runtime-expression.begin.azure-pipelines
-#          ^^ meta.runtime-expression.azure-pipelines support.function.builtin.azure-pipelines
-#             ^^^^^^^^^ meta.runtime-expression.azure-pipelines variable.language.context.azure-pipelines
-#                      ^ meta.runtime-expression.azure-pipelines punctuation.section.brackets.begin.azure-pipelines
-#                                           ^ meta.runtime-expression.azure-pipelines punctuation.section.brackets.end.azure-pipelines
-#                                                                 ^ meta.runtime-expression.azure-pipelines punctuation.definition.runtime-expression.end.azure-pipelines
+#       ^^ meta.runtime.expression.azure-pipelines punctuation.definition.runtime-expression.begin.azure-pipelines
+#          ^^ meta.runtime.expression.azure-pipelines support.function.builtin.azure-pipelines
+#             ^^^^^^^^^ meta.runtime.expression.azure-pipelines variable.language.context.azure-pipelines
+#                      ^ meta.runtime.expression.azure-pipelines punctuation.section.brackets.begin.azure-pipelines
+#                                           ^ meta.runtime.expression.azure-pipelines punctuation.section.brackets.end.azure-pipelines
+#                                                                 ^ meta.runtime.expression.azure-pipelines punctuation.definition.runtime-expression.end.azure-pipelines
 
 buildNum: $[ counter('rel', 100) ]
-#         ^^ meta.runtime-expression.azure-pipelines punctuation.definition.runtime-expression.begin.azure-pipelines
-#                                ^ meta.runtime-expression.azure-pipelines punctuation.definition.runtime-expression.end.azure-pipelines
+#         ^^ meta.runtime.expression.azure-pipelines punctuation.definition.runtime-expression.begin.azure-pipelines
+#                                ^ meta.runtime.expression.azure-pipelines punctuation.definition.runtime-expression.end.azure-pipelines

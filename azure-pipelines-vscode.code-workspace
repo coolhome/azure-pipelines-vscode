@@ -16,11 +16,13 @@
 		},
 		"editor.tokenColorCustomizations": {
 			"textMateRules": [
-				{ "scope": "meta.template-expression.azure-pipelines", "settings": { "foreground": "#C586C0" } },
-				{ "scope": "meta.runtime-expression.azure-pipelines",  "settings": { "foreground": "#4FC1FF" } },
-				{ "scope": "meta.macro-expression.azure-pipelines",    "settings": { "foreground": "#DCDCAA" } },
+				{ "scope": "meta.template.expression.azure-pipelines", "settings": { "foreground": "#C586C0" } },
+				{ "scope": "meta.runtime.expression.azure-pipelines",  "settings": { "foreground": "#4FC1FF" } },
+				{ "scope": "meta.macro.expression.azure-pipelines",    "settings": { "foreground": "#DCDCAA" } },
 				{ "scope": "support.function.builtin.azure-pipelines", "settings": { "foreground": "#DCDCAA", "fontStyle": "bold" } },
 				{ "scope": "support.function.job-status.azure-pipelines", "settings": { "foreground": "#DCDCAA", "fontStyle": "bold italic" } },
+				{ "scope": "punctuation.section.arguments.begin.azure-pipelines", "settings": { "foreground": "#FFD700" } },
+				{ "scope": "punctuation.section.arguments.end.azure-pipelines",   "settings": { "foreground": "#FFD700" } },
 				{ "scope": "variable.language.context.azure-pipelines","settings": { "foreground": "#9CDCFE" } },
 				{ "scope": "variable.other.macro.azure-pipelines",     "settings": { "foreground": "#9CDCFE" } },
 				{ "scope": "keyword.control.directive.azure-pipelines","settings": { "foreground": "#C586C0", "fontStyle": "bold" } },
@@ -39,7 +41,8 @@
 	},
 	"extensions": {
 		"recommendations": [
-			"dbaeumer.vscode-eslint"
+			"dbaeumer.vscode-eslint",
+			"ms-vscode.azure-account"
 		]
 	},
 	"launch": {
@@ -52,7 +55,7 @@
 				"runtimeExecutable": "${execPath}",
 				"args": [
 					"--extensionDevelopmentPath=${workspaceFolder:azure-pipelines-vscode}",
-					"--disable-extensions",
+					"--install-extension=ms-vscode.azure-account",
 					"${workspaceFolder:azure-pipelines-vscode}/examples/expressionSyntaxes.yml"
 				],
 				"outFiles": [

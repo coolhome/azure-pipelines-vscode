@@ -61,7 +61,7 @@
 				"3": { "name": "punctuation.definition.template-expression.end.azure-pipelines" },
 				"4": { "name": "punctuation.separator.key-value.mapping.yaml" }
 			},
-			"name": "meta.template-expression.azure-pipelines"
+			"name": "meta.template.expression.azure-pipelines"
 		},
 		"implicit-expression-pair": {
 			"begin": "(?:^|(?<=[\\s-]))(condition)\\s*(:)[ \\t]+(?=[^'\"\\s|>])",
@@ -85,7 +85,7 @@
 			"endCaptures": {
 				"0": { "name": "punctuation.definition.template-expression.end.azure-pipelines" }
 			},
-			"name": "meta.template-expression.azure-pipelines",
+			"name": "meta.template.expression.azure-pipelines",
 			"patterns": [
 				{ "include": "#expression-body" }
 			]
@@ -99,7 +99,7 @@
 			"endCaptures": {
 				"0": { "name": "punctuation.definition.runtime-expression.end.azure-pipelines" }
 			},
-			"name": "meta.runtime-expression.azure-pipelines",
+			"name": "meta.runtime.expression.azure-pipelines",
 			"patterns": [
 				{ "include": "#expression-body" }
 			]
@@ -113,7 +113,7 @@
 			"endCaptures": {
 				"0": { "name": "punctuation.definition.template-expression.end.azure-pipelines" }
 			},
-			"name": "meta.template-expression.azure-pipelines",
+			"name": "meta.template.expression.azure-pipelines",
 			"patterns": [
 				{ "include": "#expression-body-yaml-single-quoted" }
 			]
@@ -127,7 +127,7 @@
 			"endCaptures": {
 				"0": { "name": "punctuation.definition.runtime-expression.end.azure-pipelines" }
 			},
-			"name": "meta.runtime-expression.azure-pipelines",
+			"name": "meta.runtime.expression.azure-pipelines",
 			"patterns": [
 				{ "include": "#expression-body-yaml-single-quoted" }
 			]
@@ -141,7 +141,7 @@
 			"endCaptures": {
 				"0": { "name": "punctuation.definition.template-expression.end.azure-pipelines" }
 			},
-			"name": "meta.template-expression.azure-pipelines",
+			"name": "meta.template.expression.azure-pipelines",
 			"patterns": [
 				{ "include": "#expression-body-yaml-double-quoted" }
 			]
@@ -155,14 +155,14 @@
 			"endCaptures": {
 				"0": { "name": "punctuation.definition.runtime-expression.end.azure-pipelines" }
 			},
-			"name": "meta.runtime-expression.azure-pipelines",
+			"name": "meta.runtime.expression.azure-pipelines",
 			"patterns": [
 				{ "include": "#expression-body-yaml-double-quoted" }
 			]
 		},
 		"macro": {
 			"match": "(\\$\\()([A-Za-z_][A-Za-z0-9_.]*)(\\))",
-			"name": "meta.macro-expression.azure-pipelines",
+			"name": "meta.macro.expression.azure-pipelines",
 			"captures": {
 				"1": { "name": "punctuation.definition.macro-expression.begin.azure-pipelines" },
 				"2": { "name": "variable.other.macro.azure-pipelines" },
@@ -172,8 +172,8 @@
 		"expression-body": {
 			"patterns": [
 				{ "include": "#directive-keyword" },
-				{ "include": "#builtin-function" },
-				{ "include": "#job-status-function" },
+				{ "include": "#builtin-function-call" },
+				{ "include": "#job-status-function-call" },
 				{ "include": "#context-object" },
 				{ "include": "#language-constant" },
 				{ "include": "#string-literal" },
@@ -187,8 +187,8 @@
 		"expression-body-yaml-single-quoted": {
 			"patterns": [
 				{ "include": "#directive-keyword" },
-				{ "include": "#builtin-function" },
-				{ "include": "#job-status-function" },
+				{ "include": "#builtin-function-call-yaml-single-quoted" },
+				{ "include": "#job-status-function-call-yaml-single-quoted" },
 				{ "include": "#context-object" },
 				{ "include": "#language-constant" },
 				{ "include": "#string-literal-yaml-single-quoted" },
@@ -202,8 +202,8 @@
 		"expression-body-yaml-double-quoted": {
 			"patterns": [
 				{ "include": "#directive-keyword" },
-				{ "include": "#builtin-function" },
-				{ "include": "#job-status-function" },
+				{ "include": "#builtin-function-call-yaml-double-quoted" },
+				{ "include": "#job-status-function-call-yaml-double-quoted" },
 				{ "include": "#context-object" },
 				{ "include": "#language-constant" },
 				{ "include": "#string-literal-yaml-double-quoted" },
@@ -258,13 +258,83 @@
 			"match": "\\b(if|elseif|else|each|in|insert)\\b",
 			"name": "keyword.control.directive.azure-pipelines"
 		},
-		"builtin-function": {
-			"match": "\\b(and|or|not|xor|eq|ne|lt|le|gt|ge|contains|startsWith|endsWith|in|notIn|containsValue|coalesce|counter|format|join|split|length|replace|convertToJson|lower|upper|trim|iif)(?=\\s*\\()",
-			"name": "support.function.builtin.azure-pipelines"
+		"builtin-function-call": {
+			"begin": "\\b(and|or|not|xor|eq|ne|lt|le|gt|ge|contains|startsWith|endsWith|in|notIn|containsValue|coalesce|counter|format|join|split|length|replace|convertToJson|lower|upper|trim|iif)\\s*(\\()",
+			"beginCaptures": {
+				"1": { "name": "support.function.builtin.azure-pipelines" },
+				"2": { "name": "punctuation.section.arguments.begin.azure-pipelines" }
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": { "name": "punctuation.section.arguments.end.azure-pipelines" }
+			},
+			"name": "meta.function-call.azure-pipelines",
+			"patterns": [ { "include": "#expression-body" } ]
 		},
-		"job-status-function": {
-			"match": "\\b(always|succeeded|failed|canceled|succeededOrFailed)(?=\\s*\\()",
-			"name": "support.function.job-status.azure-pipelines"
+		"builtin-function-call-yaml-single-quoted": {
+			"begin": "\\b(and|or|not|xor|eq|ne|lt|le|gt|ge|contains|startsWith|endsWith|in|notIn|containsValue|coalesce|counter|format|join|split|length|replace|convertToJson|lower|upper|trim|iif)\\s*(\\()",
+			"beginCaptures": {
+				"1": { "name": "support.function.builtin.azure-pipelines" },
+				"2": { "name": "punctuation.section.arguments.begin.azure-pipelines" }
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": { "name": "punctuation.section.arguments.end.azure-pipelines" }
+			},
+			"name": "meta.function-call.azure-pipelines",
+			"patterns": [ { "include": "#expression-body-yaml-single-quoted" } ]
+		},
+		"builtin-function-call-yaml-double-quoted": {
+			"begin": "\\b(and|or|not|xor|eq|ne|lt|le|gt|ge|contains|startsWith|endsWith|in|notIn|containsValue|coalesce|counter|format|join|split|length|replace|convertToJson|lower|upper|trim|iif)\\s*(\\()",
+			"beginCaptures": {
+				"1": { "name": "support.function.builtin.azure-pipelines" },
+				"2": { "name": "punctuation.section.arguments.begin.azure-pipelines" }
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": { "name": "punctuation.section.arguments.end.azure-pipelines" }
+			},
+			"name": "meta.function-call.azure-pipelines",
+			"patterns": [ { "include": "#expression-body-yaml-double-quoted" } ]
+		},
+		"job-status-function-call": {
+			"begin": "\\b(always|succeeded|failed|canceled|succeededOrFailed)\\s*(\\()",
+			"beginCaptures": {
+				"1": { "name": "support.function.job-status.azure-pipelines" },
+				"2": { "name": "punctuation.section.arguments.begin.azure-pipelines" }
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": { "name": "punctuation.section.arguments.end.azure-pipelines" }
+			},
+			"name": "meta.function-call.azure-pipelines",
+			"patterns": [ { "include": "#expression-body" } ]
+		},
+		"job-status-function-call-yaml-single-quoted": {
+			"begin": "\\b(always|succeeded|failed|canceled|succeededOrFailed)\\s*(\\()",
+			"beginCaptures": {
+				"1": { "name": "support.function.job-status.azure-pipelines" },
+				"2": { "name": "punctuation.section.arguments.begin.azure-pipelines" }
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": { "name": "punctuation.section.arguments.end.azure-pipelines" }
+			},
+			"name": "meta.function-call.azure-pipelines",
+			"patterns": [ { "include": "#expression-body-yaml-single-quoted" } ]
+		},
+		"job-status-function-call-yaml-double-quoted": {
+			"begin": "\\b(always|succeeded|failed|canceled|succeededOrFailed)\\s*(\\()",
+			"beginCaptures": {
+				"1": { "name": "support.function.job-status.azure-pipelines" },
+				"2": { "name": "punctuation.section.arguments.begin.azure-pipelines" }
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": { "name": "punctuation.section.arguments.end.azure-pipelines" }
+			},
+			"name": "meta.function-call.azure-pipelines",
+			"patterns": [ { "include": "#expression-body-yaml-double-quoted" } ]
 		},
 		"context-object": {
 			"match": "\\b(variables|parameters|dependencies|stageDependencies|pipeline|resources|secrets)\\b",
@@ -323,7 +393,9 @@
 		},
 		"punctuation": {
 			"patterns": [
-				{ "match": "[(),]", "name": "punctuation.separator.azure-pipelines" },
+				{ "match": "\\(", "name": "meta.brace.round.azure-pipelines" },
+				{ "match": "\\)", "name": "meta.brace.round.azure-pipelines" },
+				{ "match": ",", "name": "punctuation.separator.comma.azure-pipelines" },
 				{ "match": "\\[", "name": "punctuation.section.brackets.begin.azure-pipelines" },
 				{ "match": "\\]", "name": "punctuation.section.brackets.end.azure-pipelines" },
 				{ "match": "\\.", "name": "punctuation.accessor.azure-pipelines" }
