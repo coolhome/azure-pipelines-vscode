@@ -17,7 +17,7 @@ variables:
 
   # $[ ] -- runtime expression (must occupy the entire RHS)
   isMain: $[ eq(variables['Build.SourceBranch'], 'refs/heads/main') ]
-  isMain2: '$[ eq(variables['Build.SourceBranch'], 'refs/heads/main') ]'
+  isMain2: '$[ eq(variables[''Build.SourceBranch''], ''refs/heads/main'') ]'
   isMain3: "$[ eq(variables['Build.SourceBranch'], 'refs/heads/main') ]"
   buildNum: $[ counter('rel', 100) ]
 
