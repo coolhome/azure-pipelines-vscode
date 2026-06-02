@@ -56,10 +56,10 @@
 		"template-expression-key": {
 			"match": "(\\$)(\\{\\{)(.*?)(\\}\\})\\s*(:)(?=\\s|$)",
 			"captures": {
-				"1": { "name": "punctuation.definition.expression.sigil.azure-pipelines" },
-				"2": { "name": "punctuation.definition.template-expression.begin.azure-pipelines" },
+				"1": { "name": "keyword.operator.expression.sigil.azure-pipelines" },
+				"2": { "name": "punctuation.definition.template-expression.begin.azure-pipelines keyword.other.template-expression.azure-pipelines" },
 				"3": { "patterns": [ { "include": "#expression-body" } ] },
-				"4": { "name": "punctuation.definition.template-expression.end.azure-pipelines" },
+				"4": { "name": "punctuation.definition.template-expression.end.azure-pipelines keyword.other.template-expression.azure-pipelines" },
 				"5": { "name": "punctuation.separator.key-value.mapping.yaml" }
 			},
 			"name": "meta.template.expression.azure-pipelines"
@@ -68,10 +68,10 @@
 			"match": "(')(\\$)(\\{\\{)(.*?)(\\}\\})(')\\s*(:)(?=\\s|$)",
 			"captures": {
 				"1": { "name": "punctuation.definition.string.begin.yaml" },
-				"2": { "name": "punctuation.definition.expression.sigil.azure-pipelines" },
-				"3": { "name": "punctuation.definition.template-expression.begin.azure-pipelines" },
+				"2": { "name": "keyword.operator.expression.sigil.azure-pipelines" },
+				"3": { "name": "punctuation.definition.template-expression.begin.azure-pipelines keyword.other.template-expression.azure-pipelines" },
 				"4": { "patterns": [ { "include": "#expression-body-yaml-single-quoted" } ] },
-				"5": { "name": "punctuation.definition.template-expression.end.azure-pipelines" },
+				"5": { "name": "punctuation.definition.template-expression.end.azure-pipelines keyword.other.template-expression.azure-pipelines" },
 				"6": { "name": "punctuation.definition.string.end.yaml" },
 				"7": { "name": "punctuation.separator.key-value.mapping.yaml" }
 			},
@@ -81,10 +81,10 @@
 			"match": "(\")(\\$)(\\{\\{)(.*?)(\\}\\})(\")\\s*(:)(?=\\s|$)",
 			"captures": {
 				"1": { "name": "punctuation.definition.string.begin.yaml" },
-				"2": { "name": "punctuation.definition.expression.sigil.azure-pipelines" },
-				"3": { "name": "punctuation.definition.template-expression.begin.azure-pipelines" },
+				"2": { "name": "keyword.operator.expression.sigil.azure-pipelines" },
+				"3": { "name": "punctuation.definition.template-expression.begin.azure-pipelines keyword.other.template-expression.azure-pipelines" },
 				"4": { "patterns": [ { "include": "#expression-body-yaml-double-quoted" } ] },
-				"5": { "name": "punctuation.definition.template-expression.end.azure-pipelines" },
+				"5": { "name": "punctuation.definition.template-expression.end.azure-pipelines keyword.other.template-expression.azure-pipelines" },
 				"6": { "name": "punctuation.definition.string.end.yaml" },
 				"7": { "name": "punctuation.separator.key-value.mapping.yaml" }
 			},
@@ -106,12 +106,12 @@
 		"template-expression": {
 			"begin": "(\\$)(\\{\\{)",
 			"beginCaptures": {
-				"1": { "name": "punctuation.definition.expression.sigil.azure-pipelines" },
-				"2": { "name": "punctuation.definition.template-expression.begin.azure-pipelines" }
+				"1": { "name": "keyword.operator.expression.sigil.azure-pipelines" },
+				"2": { "name": "punctuation.definition.template-expression.begin.azure-pipelines keyword.other.template-expression.azure-pipelines" }
 			},
 			"end": "\\}\\}",
 			"endCaptures": {
-				"0": { "name": "punctuation.definition.template-expression.end.azure-pipelines" }
+				"0": { "name": "punctuation.definition.template-expression.end.azure-pipelines keyword.other.template-expression.azure-pipelines" }
 			},
 			"name": "meta.template.expression.azure-pipelines",
 			"patterns": [
@@ -121,12 +121,12 @@
 		"runtime-expression": {
 			"begin": "(\\$)(\\[)",
 			"beginCaptures": {
-				"1": { "name": "punctuation.definition.expression.sigil.azure-pipelines" },
-				"2": { "name": "punctuation.definition.runtime-expression.begin.azure-pipelines" }
+				"1": { "name": "keyword.operator.expression.sigil.azure-pipelines" },
+				"2": { "name": "punctuation.definition.runtime-expression.begin.azure-pipelines keyword.other.runtime-expression.azure-pipelines" }
 			},
 			"end": "\\]",
 			"endCaptures": {
-				"0": { "name": "punctuation.definition.runtime-expression.end.azure-pipelines" }
+				"0": { "name": "punctuation.definition.runtime-expression.end.azure-pipelines keyword.other.runtime-expression.azure-pipelines" }
 			},
 			"name": "meta.runtime.expression.azure-pipelines",
 			"patterns": [
@@ -136,12 +136,12 @@
 		"template-expression-yaml-single-quoted": {
 			"begin": "(\\$)(\\{\\{)",
 			"beginCaptures": {
-				"1": { "name": "punctuation.definition.expression.sigil.azure-pipelines" },
-				"2": { "name": "punctuation.definition.template-expression.begin.azure-pipelines" }
+				"1": { "name": "keyword.operator.expression.sigil.azure-pipelines" },
+				"2": { "name": "punctuation.definition.template-expression.begin.azure-pipelines keyword.other.template-expression.azure-pipelines" }
 			},
 			"end": "\\}\\}",
 			"endCaptures": {
-				"0": { "name": "punctuation.definition.template-expression.end.azure-pipelines" }
+				"0": { "name": "punctuation.definition.template-expression.end.azure-pipelines keyword.other.template-expression.azure-pipelines" }
 			},
 			"name": "meta.template.expression.azure-pipelines",
 			"patterns": [
@@ -151,12 +151,12 @@
 		"runtime-expression-yaml-single-quoted": {
 			"begin": "(\\$)(\\[)",
 			"beginCaptures": {
-				"1": { "name": "punctuation.definition.expression.sigil.azure-pipelines" },
-				"2": { "name": "punctuation.definition.runtime-expression.begin.azure-pipelines" }
+				"1": { "name": "keyword.operator.expression.sigil.azure-pipelines" },
+				"2": { "name": "punctuation.definition.runtime-expression.begin.azure-pipelines keyword.other.runtime-expression.azure-pipelines" }
 			},
 			"end": "\\]",
 			"endCaptures": {
-				"0": { "name": "punctuation.definition.runtime-expression.end.azure-pipelines" }
+				"0": { "name": "punctuation.definition.runtime-expression.end.azure-pipelines keyword.other.runtime-expression.azure-pipelines" }
 			},
 			"name": "meta.runtime.expression.azure-pipelines",
 			"patterns": [
@@ -166,12 +166,12 @@
 		"template-expression-yaml-double-quoted": {
 			"begin": "(\\$)(\\{\\{)",
 			"beginCaptures": {
-				"1": { "name": "punctuation.definition.expression.sigil.azure-pipelines" },
-				"2": { "name": "punctuation.definition.template-expression.begin.azure-pipelines" }
+				"1": { "name": "keyword.operator.expression.sigil.azure-pipelines" },
+				"2": { "name": "punctuation.definition.template-expression.begin.azure-pipelines keyword.other.template-expression.azure-pipelines" }
 			},
 			"end": "\\}\\}",
 			"endCaptures": {
-				"0": { "name": "punctuation.definition.template-expression.end.azure-pipelines" }
+				"0": { "name": "punctuation.definition.template-expression.end.azure-pipelines keyword.other.template-expression.azure-pipelines" }
 			},
 			"name": "meta.template.expression.azure-pipelines",
 			"patterns": [
@@ -181,12 +181,12 @@
 		"runtime-expression-yaml-double-quoted": {
 			"begin": "(\\$)(\\[)",
 			"beginCaptures": {
-				"1": { "name": "punctuation.definition.expression.sigil.azure-pipelines" },
-				"2": { "name": "punctuation.definition.runtime-expression.begin.azure-pipelines" }
+				"1": { "name": "keyword.operator.expression.sigil.azure-pipelines" },
+				"2": { "name": "punctuation.definition.runtime-expression.begin.azure-pipelines keyword.other.runtime-expression.azure-pipelines" }
 			},
 			"end": "\\]",
 			"endCaptures": {
-				"0": { "name": "punctuation.definition.runtime-expression.end.azure-pipelines" }
+				"0": { "name": "punctuation.definition.runtime-expression.end.azure-pipelines keyword.other.runtime-expression.azure-pipelines" }
 			},
 			"name": "meta.runtime.expression.azure-pipelines",
 			"patterns": [
@@ -197,10 +197,10 @@
 			"match": "(\\$)(\\()([A-Za-z_][A-Za-z0-9_.]*)(\\))",
 			"name": "meta.macro.expression.azure-pipelines",
 			"captures": {
-				"1": { "name": "punctuation.definition.expression.sigil.azure-pipelines" },
-				"2": { "name": "punctuation.definition.variable.begin.azure-pipelines" },
+				"1": { "name": "keyword.operator.expression.sigil.azure-pipelines" },
+				"2": { "name": "punctuation.definition.variable.begin.azure-pipelines keyword.other.macro.azure-pipelines" },
 				"3": { "name": "variable.other.macro.azure-pipelines" },
-				"4": { "name": "punctuation.definition.variable.end.azure-pipelines" }
+				"4": { "name": "punctuation.definition.variable.end.azure-pipelines keyword.other.macro.azure-pipelines" }
 			}
 		},
 		"expression-body": {
