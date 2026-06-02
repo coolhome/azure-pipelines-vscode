@@ -31,3 +31,28 @@ variables:
 #                 ^^^^^^^^^^ meta.template.expression.azure-pipelines variable.language.context.azure-pipelines
 #                                 ^^ meta.template.expression.azure-pipelines punctuation.definition.template-expression.end.azure-pipelines
 #                                   ^ punctuation.separator.key-value.mapping.yaml
+
+# YAML-quoted template expression keys still register as mapping keys
+# so nested block content keeps its scoping.
+- '${{ each region in split(''a'', '','') }}':
+# ^ punctuation.definition.string.begin.yaml
+#  ^ meta.template.expression.azure-pipelines punctuation.definition.expression.sigil.azure-pipelines
+#   ^^ meta.template.expression.azure-pipelines punctuation.definition.template-expression.begin.azure-pipelines
+#      ^^^^ meta.template.expression.azure-pipelines keyword.control.directive.azure-pipelines
+#                                         ^^ meta.template.expression.azure-pipelines punctuation.definition.template-expression.end.azure-pipelines
+#                                           ^ punctuation.definition.string.end.yaml
+#                                            ^ punctuation.separator.key-value.mapping.yaml
+  - script: echo hi
+# ^ punctuation.definition.block.sequence.item.yaml
+#   ^^^^^^ string.unquoted.plain.out.yaml entity.name.tag.yaml
+
+- "${{ each region in split('a', ',') }}":
+# ^ punctuation.definition.string.begin.yaml
+#  ^ meta.template.expression.azure-pipelines punctuation.definition.expression.sigil.azure-pipelines
+#   ^^ meta.template.expression.azure-pipelines punctuation.definition.template-expression.begin.azure-pipelines
+#                                     ^^ meta.template.expression.azure-pipelines punctuation.definition.template-expression.end.azure-pipelines
+#                                       ^ punctuation.definition.string.end.yaml
+#                                        ^ punctuation.separator.key-value.mapping.yaml
+  - script: echo hi
+# ^ punctuation.definition.block.sequence.item.yaml
+#   ^^^^^^ string.unquoted.plain.out.yaml entity.name.tag.yaml

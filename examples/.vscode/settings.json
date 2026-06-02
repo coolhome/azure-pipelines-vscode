@@ -2,5 +2,18 @@
     "files.associations": {
         "*.yml": "azure-pipelines",
         "**/*.yml": "azure-pipelines"
+    },
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": [
+                    "punctuation.definition.template-expression.begin.azure-pipelines",
+                    "punctuation.definition.template-expression.end.azure-pipelines"
+                ],
+                "settings": {
+                    "foreground": "#FFFFFF"
+                }
+            }
+        ]
     }
 }
