@@ -75,7 +75,7 @@
 				"6": { "name": "punctuation.definition.string.end.yaml" },
 				"7": { "name": "punctuation.separator.key-value.mapping.yaml" }
 			},
-			"name": "meta.template.expression.azure-pipelines string.quoted.single.yaml"
+			"name": "meta.template.expression.azure-pipelines"
 		},
 		"template-expression-key-yaml-double-quoted": {
 			"match": "(\")(\\$)(\\{\\{)(.*?)(\\}\\})(\")\\s*(:)(?=\\s|$)",
@@ -88,7 +88,7 @@
 				"6": { "name": "punctuation.definition.string.end.yaml" },
 				"7": { "name": "punctuation.separator.key-value.mapping.yaml" }
 			},
-			"name": "meta.template.expression.azure-pipelines string.quoted.double.yaml"
+			"name": "meta.template.expression.azure-pipelines"
 		},
 		"implicit-expression-pair": {
 			"begin": "(?:^|(?<=[\\s-]))(condition)\\s*(:)[ \\t]+(?=[^'\"\\s|>])",
