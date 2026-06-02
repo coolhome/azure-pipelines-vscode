@@ -64,6 +64,32 @@
 			},
 			"name": "meta.template.expression.azure-pipelines"
 		},
+		"template-expression-key-yaml-single-quoted": {
+			"match": "(')(\\$)(\\{\\{)(.*?)(\\}\\})(')\\s*(:)(?=\\s|$)",
+			"captures": {
+				"1": { "name": "punctuation.definition.string.begin.yaml" },
+				"2": { "name": "punctuation.definition.expression.sigil.azure-pipelines" },
+				"3": { "name": "punctuation.definition.template-expression.begin.azure-pipelines" },
+				"4": { "patterns": [ { "include": "#expression-body-yaml-single-quoted" } ] },
+				"5": { "name": "punctuation.definition.template-expression.end.azure-pipelines" },
+				"6": { "name": "punctuation.definition.string.end.yaml" },
+				"7": { "name": "punctuation.separator.key-value.mapping.yaml" }
+			},
+			"name": "meta.template.expression.azure-pipelines string.quoted.single.yaml"
+		},
+		"template-expression-key-yaml-double-quoted": {
+			"match": "(\")(\\$)(\\{\\{)(.*?)(\\}\\})(\")\\s*(:)(?=\\s|$)",
+			"captures": {
+				"1": { "name": "punctuation.definition.string.begin.yaml" },
+				"2": { "name": "punctuation.definition.expression.sigil.azure-pipelines" },
+				"3": { "name": "punctuation.definition.template-expression.begin.azure-pipelines" },
+				"4": { "patterns": [ { "include": "#expression-body-yaml-double-quoted" } ] },
+				"5": { "name": "punctuation.definition.template-expression.end.azure-pipelines" },
+				"6": { "name": "punctuation.definition.string.end.yaml" },
+				"7": { "name": "punctuation.separator.key-value.mapping.yaml" }
+			},
+			"name": "meta.template.expression.azure-pipelines string.quoted.double.yaml"
+		},
 		"implicit-expression-pair": {
 			"begin": "(?:^|(?<=[\\s-]))(condition)\\s*(:)[ \\t]+(?=[^'\"\\s|>])",
 			"beginCaptures": {
@@ -452,6 +478,8 @@
 		},
 		"block-pair": {
 			"patterns": [
+				{ "include": "#template-expression-key-yaml-single-quoted" },
+				{ "include": "#template-expression-key-yaml-double-quoted" },
 				{ "include": "#template-expression-key" },
 				{ "include": "#implicit-expression-pair" },
 				{ "include": "#expressions" },
@@ -699,6 +727,8 @@
 		},
 		"flow-pair": {
 			"patterns": [
+				{ "include": "#template-expression-key-yaml-single-quoted" },
+				{ "include": "#template-expression-key-yaml-double-quoted" },
 				{ "include": "#template-expression-key" },
 				{ "include": "#expressions" },
 				{
@@ -827,7 +857,7 @@
 				},
 				{
 					"begin": "(?x)\n                          [^\\s[-?:,\\[\\]{}#&*!|>'\"%@`]]\n                        | [?:-] [^\\s[\\[\\]{},]]\n                    ",
-					"end": "(?x)\n                        (?=\n                              \\s* $\n                            | \\s+ \\#\n                            | \\s* : (\\s|$)\n                            | \\s* : [\\[\\]{},]\n                            | \\s* [\\[\\]{},]\n                            | \\$ (?: \\( | \\[ )\n                        )\n                    ",
+					"end": "(?x)\n                        (?=\n                              \\s* $\n                            | \\s+ \\#\n                            | \\s* : (\\s|$)\n                            | \\s* : [\\[\\]{},]\n                            | \\s* [\\[\\]{},]\n                        )\n                    ",
 					"name": "string.unquoted.plain.in.yaml",
 					"patterns": [
 						{ "include": "#expressions" }
@@ -872,7 +902,7 @@
 				},
 				{
 					"begin": "(?x)\n                          [^\\s[-?:,\\[\\]{}#&*!|>'\"%@`]]\n                        | [?:-] \\S\n                    ",
-					"end": "(?x)\n                        (?=\n                              \\s* $\n                            | \\s+ \\#\n                            | \\s* : (\\s|$)\n                            | \\$ (?: \\( | \\[ )\n                        )\n                    ",
+					"end": "(?x)\n                        (?=\n                              \\s* $\n                            | \\s+ \\#\n                            | \\s* : (\\s|$)\n                        )\n                    ",
 					"name": "string.unquoted.plain.out.yaml",
 					"patterns": [
 						{ "include": "#expressions" }
