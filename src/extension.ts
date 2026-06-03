@@ -10,6 +10,7 @@ import * as languageclient from 'vscode-languageclient/node';
 import * as logger from './logger';
 import { getSchemaAssociation, locateSchemaFile, onDidSelectOrganization, SchemaAssociationNotification } from './schema-association-service';
 import { schemaContributor, CUSTOM_SCHEMA_REQUEST, CUSTOM_CONTENT_REQUEST } from './schema-contributor';
+import { registerScaffoldSnippetProvider } from './snippets/scaffoldSnippetProvider';
 import { telemetryHelper } from './helpers/telemetryHelper';
 import { getAzureAccountExtensionApi } from './extensionApis';
 
@@ -34,6 +35,7 @@ export async function activate(context: vscode.ExtensionContext) {
     });
     await telemetryHelper.callWithTelemetryAndErrorHandling(async () => {
         await activateYmlContributor(context);
+        registerScaffoldSnippetProvider(context, LANGUAGE_IDENTIFIER);
         if (configurePipelineEnabled) {
             const { activateConfigurePipeline } = await import('./configure/activate');
             await activateConfigurePipeline();

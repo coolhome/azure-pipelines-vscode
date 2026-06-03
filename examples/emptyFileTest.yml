@@ -1,0 +1,10 @@
+parameters:
+  - name: environment
+    type: string
+
+stages:
+  - stage: ${{ upper(parameters.environment) }}_DEPLOY
+    pool:
+        vmImage: 'ubuntu-latest'
+    jobs:
+        - job: 

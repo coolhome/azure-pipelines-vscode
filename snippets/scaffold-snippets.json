@@ -1,0 +1,155 @@
+{
+    "Pipeline Stage Template": {
+        "path": "pipeline",
+        "prefix": "pipeline-stages",
+        "description": "Path A. Runnable pipeline with stages.",
+        "body": [
+            "name: $(Date:yyyyMMdd)$(Rev:.r)",
+            "trigger: none",
+            "pr: none",
+            "appendCommitMessageToRunName: ${1|true,false|}",
+            "",
+            "stages:",
+            "  - stage: $2"
+        ]
+    },
+
+    "Pipeline Job Template": {
+        "path": "pipeline",
+        "prefix": "pipeline-jobs",
+        "description": "Path A. Runnable pipeline with jobs (implicit single stage).",
+        "body": [
+            "name: $(Date:yyyyMMdd)$(Rev:.r)",
+            "trigger: none",
+            "pr: none",
+            "appendCommitMessageToRunName: ${1|true,false|}",
+            "",
+            "jobs:",
+            "  - job: $2"
+        ]
+    },
+
+    "Pipeline Steps Template (implicit job)": {
+        "path": "pipeline",
+        "prefix": "pipeline-steps",
+        "description": "Path A. Runnable pipeline with steps (implicit single job).",
+        "body": [
+            "name: $(Date:yyyyMMdd)$(Rev:.r)",
+            "trigger: none",
+            "pr: none",
+            "appendCommitMessageToRunName: ${1|true,false|}",
+            "",
+            "steps:",
+            "  - pwsh: $2"
+        ]
+    },
+
+    "Pipeline Deployment Template": {
+        "path": "pipeline",
+        "prefix": "pipeline-deployment",
+        "description": "Path A. Runnable pipeline with a deployment job.",
+        "body": [
+            "name: $(Date:yyyyMMdd)$(Rev:.r)",
+            "trigger: none",
+            "pr: none",
+            "appendCommitMessageToRunName: ${1|true,false|}",
+            "",
+            "jobs:",
+            "  - deployment: $2",
+            "    environment: $3"
+        ]
+    },
+
+    "Pipeline Extends Template (instance of a template)": {
+        "path": "pipeline",
+        "prefix": "pipeline-extends",
+        "description": "Path A. Runnable pipeline that extends an external template.",
+        "body": [
+            "name: $(Date:yyyyMMdd)$(Rev:.r)",
+            "trigger: none",
+            "pr: none",
+            "appendCommitMessageToRunName: ${1|true,false|}",
+            "",
+            "extends:",
+            "  template: $2",
+            "  parameters:",
+            "    ${3:name}: ${4:value}"
+        ]
+    },
+
+    "Stage Template": {
+        "path": "template",
+        "prefix": "template-stage",
+        "description": "Path B. Reusable stage template with parameters.",
+        "body": [
+            "parameters:",
+            "  - name: ${1:stageName}",
+            "    type: string",
+            "",
+            "stages:",
+            "  - stage: \\${{ parameters.${1:stageName} }}"
+        ]
+    },
+
+    "Job Template": {
+        "path": "template",
+        "prefix": "template-job",
+        "description": "Path B. Reusable job template with parameters.",
+        "body": [
+            "parameters:",
+            "  - name: ${1:jobName}",
+            "    type: string",
+            "",
+            "jobs:",
+            "  - job: \\${{ parameters.${1:jobName} }}"
+        ]
+    },
+
+    "Step Template": {
+        "path": "template",
+        "prefix": "template-step",
+        "description": "Path B. Reusable step template with parameters.",
+        "body": [
+            "parameters:",
+            "  - name: ${1:script}",
+            "    type: string",
+            "    default: ''",
+            "",
+            "steps:",
+            "  - pwsh: \\${{ parameters.${1:script} }}"
+        ]
+    },
+
+    "Variable Template": {
+        "path": "template",
+        "prefix": "template-variables",
+        "description": "Path B. Reusable variables template.",
+        "body": [
+            "variables:",
+            "  - name: $1",
+            "    value: $2"
+        ]
+    },
+
+    "Minimal stage": {
+        "path": "child",
+        "context": "stages",
+        "prefix": "stage",
+        "description": "Append a minimal stage (stops at jobs:) to an existing stages: block.",
+        "body": [
+            "- stage: $1",
+            "  jobs:"
+        ]
+    },
+
+    "Minimal job": {
+        "path": "child",
+        "context": "jobs",
+        "prefix": "job",
+        "description": "Append a minimal job (stops at steps:) to an existing jobs: block.",
+        "body": [
+            "- job: $1",
+            "  steps:"
+        ]
+    }
+}
