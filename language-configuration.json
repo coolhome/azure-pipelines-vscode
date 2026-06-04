@@ -28,5 +28,11 @@
 	"indentationRules": {
 		"increaseIndentPattern": "^\\s*.*(:|-) ?(&amp;\\w+)?(\\{[^}\"']*|\\([^)\"']*)?$",
 		"decreaseIndentPattern": "^\\s+\\}$"
-	}
+	},
+	"onEnterRules": [
+		{
+			"beforeText": "^\\s*-\\s+\\w+:\\s+\\S.*$",
+			"action": { "indent": "indent" }
+		}
+	]
 }
