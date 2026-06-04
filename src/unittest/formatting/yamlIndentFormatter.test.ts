@@ -8,6 +8,16 @@ suite('yamlIndentFormatter', () => {
             assert.deepStrictEqual(result, { newIndent: '      ', currentIndentLength: 0 });
         });
 
+        test('handles a left-aligned list item (dash at column 0)', () => {
+            const result = computeHangingIndent('- name: deployStages', '');
+            assert.deepStrictEqual(result, { newIndent: '  ', currentIndentLength: 0 });
+        });
+
+        test('handles a 2-space-indented list item', () => {
+            const result = computeHangingIndent('  - name: deployStages', '');
+            assert.deepStrictEqual(result, { newIndent: '    ', currentIndentLength: 0 });
+        });
+
         test('uses the literal column of the key, independent of tab size', () => {
             // Indent of dash is 7 spaces, so key column is 9 → newIndent has 9 spaces.
             const result = computeHangingIndent('       - script: echo hi', '');

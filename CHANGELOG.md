@@ -3,6 +3,10 @@ All notable changes to the Azure Pipelines extension will be documented in this 
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/). Versioning follows an internal Azure DevOps format that is not compatible with SemVer.
 
+## Unreleased
+### Added
+- Hanging-indent on Enter after a `- key: value` line: the new line is now aligned under the first character after `- `, matching standard Azure Pipelines YAML style (e.g. `type:` lining up with `name:` under a `parameters` entry). Implemented as an `OnTypeFormattingEditProvider`, so alignment holds regardless of the configured `editor.tabSize`. Requires `editor.formatOnType` (enabled by default for the `azure-pipelines` language).
+
 ## 1.208.0
 ### Added
 - Schema auto-detection now works for all workspaces
