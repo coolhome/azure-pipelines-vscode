@@ -5,8 +5,8 @@
 			"path": "."
 		},
 		{
-			"name": "azp-expression-test",
-			"path": "../azp-expression-test"
+			"name": "azp-reference",
+			"path": "../azp-reference"
 		},
 		{
 			"path": "../azure-pipelines-language-server"
