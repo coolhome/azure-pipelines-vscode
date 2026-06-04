@@ -103,7 +103,8 @@
                     "comments": false,
                     "strings": true
                 },
-                "editor.autoIndent": "full"
+                "editor.autoIndent": "full",
+                "editor.formatOnType": true
             }
         },
         "commands": [

@@ -12,6 +12,7 @@ import { getSchemaAssociation, locateSchemaFile, onDidSelectOrganization, Schema
 import { schemaContributor, CUSTOM_SCHEMA_REQUEST, CUSTOM_CONTENT_REQUEST } from './schema-contributor';
 import { telemetryHelper } from './helpers/telemetryHelper';
 import { getAzureAccountExtensionApi } from './extensionApis';
+import { yamlListItemHangingIndentProvider } from './yamlIndentFormatter';
 
 /**
  * The unique string that identifies the Azure Pipelines languge.
@@ -70,6 +71,14 @@ async function activateYmlContributor(context: vscode.ExtensionContext) {
 
     // TODO: Can we get rid of this since it's set in package.json?
     vscode.languages.setLanguageConfiguration(LANGUAGE_IDENTIFIER, { wordPattern: /("(?:[^\\\"]*(?:\\.)?)*"?)|[^\s{}\[\],:]+/ });
+
+    context.subscriptions.push(
+        vscode.languages.registerOnTypeFormattingEditProvider(
+            DOCUMENT_SELECTOR,
+            yamlListItemHangingIndentProvider,
+            '\n',
+        ),
+    );
 
     // Let the server know of any schema changes.
     context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(async event => {
