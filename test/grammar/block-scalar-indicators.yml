@@ -1,0 +1,97 @@
+# SYNTAX TEST "source.yaml" "block scalar indentation and chomping indicator order"
+
+condition: |-2 # modifiers
+#          ^ meta.implicit-expression.azure-pipelines keyword.control.flow.block-scalar.literal.yaml - invalid.illegal.expected-comment-or-newline.yaml
+#            ^ meta.implicit-expression.azure-pipelines constant.numeric.indentation-indicator.yaml - invalid.illegal.expected-comment-or-newline.yaml
+#           ^ meta.implicit-expression.azure-pipelines storage.modifier.chomping-indicator.yaml - invalid.illegal.expected-comment-or-newline.yaml
+#              ^^^^^^^^^^^ comment.line.number-sign.yaml - invalid.illegal.expected-comment-or-newline.yaml
+  and(succeeded(), eq(variables.ready, 'true'))
+# ^^^ meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.builtin.azure-pipelines
+#     ^^^^^^^^^ meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.job-status.azure-pipelines
+displayName: succeeded()
+#            ^^^^^^^^^ - meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.job-status.azure-pipelines
+
+condition: |2- # modifiers
+#          ^ meta.implicit-expression.azure-pipelines keyword.control.flow.block-scalar.literal.yaml - invalid.illegal.expected-comment-or-newline.yaml
+#           ^ meta.implicit-expression.azure-pipelines constant.numeric.indentation-indicator.yaml - invalid.illegal.expected-comment-or-newline.yaml
+#            ^ meta.implicit-expression.azure-pipelines storage.modifier.chomping-indicator.yaml - invalid.illegal.expected-comment-or-newline.yaml
+#              ^^^^^^^^^^^ comment.line.number-sign.yaml - invalid.illegal.expected-comment-or-newline.yaml
+  and(succeeded(), eq(variables.ready, 'true'))
+# ^^^ meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.builtin.azure-pipelines
+#     ^^^^^^^^^ meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.job-status.azure-pipelines
+displayName: succeeded()
+#            ^^^^^^^^^ - meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.job-status.azure-pipelines
+
+condition: >+2 # modifiers
+#          ^ meta.implicit-expression.azure-pipelines keyword.control.flow.block-scalar.folded.yaml - invalid.illegal.expected-comment-or-newline.yaml
+#            ^ meta.implicit-expression.azure-pipelines constant.numeric.indentation-indicator.yaml - invalid.illegal.expected-comment-or-newline.yaml
+#           ^ meta.implicit-expression.azure-pipelines storage.modifier.chomping-indicator.yaml - invalid.illegal.expected-comment-or-newline.yaml
+#              ^^^^^^^^^^^ comment.line.number-sign.yaml - invalid.illegal.expected-comment-or-newline.yaml
+  and(succeeded(), eq(variables.ready, 'true'))
+# ^^^ meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.builtin.azure-pipelines
+#     ^^^^^^^^^ meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.job-status.azure-pipelines
+displayName: succeeded()
+#            ^^^^^^^^^ - meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.job-status.azure-pipelines
+
+condition: >2+ # modifiers
+#          ^ meta.implicit-expression.azure-pipelines keyword.control.flow.block-scalar.folded.yaml - invalid.illegal.expected-comment-or-newline.yaml
+#           ^ meta.implicit-expression.azure-pipelines constant.numeric.indentation-indicator.yaml - invalid.illegal.expected-comment-or-newline.yaml
+#            ^ meta.implicit-expression.azure-pipelines storage.modifier.chomping-indicator.yaml - invalid.illegal.expected-comment-or-newline.yaml
+#              ^^^^^^^^^^^ comment.line.number-sign.yaml - invalid.illegal.expected-comment-or-newline.yaml
+  and(succeeded(), eq(variables.ready, 'true'))
+# ^^^ meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.builtin.azure-pipelines
+#     ^^^^^^^^^ meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.job-status.azure-pipelines
+displayName: succeeded()
+#            ^^^^^^^^^ - meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.job-status.azure-pipelines
+
+- script: |-2
+#         ^ keyword.control.flow.block-scalar.literal.yaml - invalid.illegal.expected-comment-or-newline.yaml meta.implicit-expression.azure-pipelines
+#           ^ constant.numeric.indentation-indicator.yaml - invalid.illegal.expected-comment-or-newline.yaml
+#          ^ storage.modifier.chomping-indicator.yaml - invalid.illegal.expected-comment-or-newline.yaml
+    condition: succeeded()
+#   ^^^^^^^^^ string.unquoted.block.yaml - meta.implicit-expression.azure-pipelines
+#              ^^^^^^^^^ string.unquoted.block.yaml - meta.implicit-expression.azure-pipelines support.function.job-status.azure-pipelines
+  displayName: succeeded()
+#              ^^^^^^^^^ - meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.job-status.azure-pipelines
+
+- script: |2-
+#         ^ keyword.control.flow.block-scalar.literal.yaml - invalid.illegal.expected-comment-or-newline.yaml meta.implicit-expression.azure-pipelines
+#          ^ constant.numeric.indentation-indicator.yaml - invalid.illegal.expected-comment-or-newline.yaml
+#           ^ storage.modifier.chomping-indicator.yaml - invalid.illegal.expected-comment-or-newline.yaml
+    condition: succeeded()
+#   ^^^^^^^^^ string.unquoted.block.yaml - meta.implicit-expression.azure-pipelines
+#              ^^^^^^^^^ string.unquoted.block.yaml - meta.implicit-expression.azure-pipelines support.function.job-status.azure-pipelines
+  displayName: succeeded()
+#              ^^^^^^^^^ - meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.job-status.azure-pipelines
+
+- script: >+2
+#         ^ keyword.control.flow.block-scalar.folded.yaml - invalid.illegal.expected-comment-or-newline.yaml meta.implicit-expression.azure-pipelines
+#           ^ constant.numeric.indentation-indicator.yaml - invalid.illegal.expected-comment-or-newline.yaml
+#          ^ storage.modifier.chomping-indicator.yaml - invalid.illegal.expected-comment-or-newline.yaml
+    condition: succeeded()
+#   ^^^^^^^^^ string.unquoted.block.yaml - meta.implicit-expression.azure-pipelines
+#              ^^^^^^^^^ string.unquoted.block.yaml - meta.implicit-expression.azure-pipelines support.function.job-status.azure-pipelines
+  displayName: succeeded()
+#              ^^^^^^^^^ - meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.job-status.azure-pipelines
+
+- script: >2+
+#         ^ keyword.control.flow.block-scalar.folded.yaml - invalid.illegal.expected-comment-or-newline.yaml meta.implicit-expression.azure-pipelines
+#          ^ constant.numeric.indentation-indicator.yaml - invalid.illegal.expected-comment-or-newline.yaml
+#           ^ storage.modifier.chomping-indicator.yaml - invalid.illegal.expected-comment-or-newline.yaml
+    condition: succeeded()
+#   ^^^^^^^^^ string.unquoted.block.yaml - meta.implicit-expression.azure-pipelines
+#              ^^^^^^^^^ string.unquoted.block.yaml - meta.implicit-expression.azure-pipelines support.function.job-status.azure-pipelines
+  displayName: succeeded()
+#              ^^^^^^^^^ - meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.job-status.azure-pipelines
+
+condition: |--2
+#            ^^ invalid.illegal.expected-comment-or-newline.yaml - constant.numeric.indentation-indicator.yaml storage.modifier.chomping-indicator.yaml
+
+condition: >2+2
+#             ^ invalid.illegal.expected-comment-or-newline.yaml - constant.numeric.indentation-indicator.yaml storage.modifier.chomping-indicator.yaml
+
+- script: >++2
+#           ^^ invalid.illegal.expected-comment-or-newline.yaml - constant.numeric.indentation-indicator.yaml storage.modifier.chomping-indicator.yaml
+
+- script: |22-
+#           ^^ invalid.illegal.expected-comment-or-newline.yaml - constant.numeric.indentation-indicator.yaml storage.modifier.chomping-indicator.yaml

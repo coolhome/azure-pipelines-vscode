@@ -1,0 +1,30 @@
+# SYNTAX TEST "source.yaml" "function and directive keywords versus expression properties"
+
+value: ${{ in(parameters.value, 'a', 'b') }}
+#          ^^ meta.template.expression.azure-pipelines support.function.builtin.azure-pipelines - keyword.control.directive.azure-pipelines
+
+- ${{ each item in parameters.items }}:
+#     ^^^^ meta.template.expression.azure-pipelines keyword.control.directive.azure-pipelines
+#               ^^ meta.template.expression.azure-pipelines keyword.control.directive.azure-pipelines
+  - script: echo item
+
+value: ${{ parameters.if.in.variables }}
+#                     ^^ meta.template.expression.azure-pipelines variable.other.property.azure-pipelines - keyword.control.directive.azure-pipelines
+#                        ^^ meta.template.expression.azure-pipelines variable.other.property.azure-pipelines - keyword.control.directive.azure-pipelines support.function.builtin.azure-pipelines
+#                           ^^^^^^^^^ meta.template.expression.azure-pipelines variable.other.property.azure-pipelines - variable.language.context.azure-pipelines
+value: '${{ parameters.if.in.variables }}'
+#                      ^^ meta.template.expression.azure-pipelines variable.other.property.azure-pipelines - keyword.control.directive.azure-pipelines
+#                         ^^ meta.template.expression.azure-pipelines variable.other.property.azure-pipelines - keyword.control.directive.azure-pipelines support.function.builtin.azure-pipelines
+#                            ^^^^^^^^^ meta.template.expression.azure-pipelines variable.other.property.azure-pipelines - variable.language.context.azure-pipelines
+value: "${{ parameters.if.in.variables }}"
+#                      ^^ meta.template.expression.azure-pipelines variable.other.property.azure-pipelines - keyword.control.directive.azure-pipelines
+#                         ^^ meta.template.expression.azure-pipelines variable.other.property.azure-pipelines - keyword.control.directive.azure-pipelines support.function.builtin.azure-pipelines
+#                            ^^^^^^^^^ meta.template.expression.azure-pipelines variable.other.property.azure-pipelines - variable.language.context.azure-pipelines
+value: $[ variables.if.in.variables ]
+#                   ^^ meta.runtime.expression.azure-pipelines variable.other.property.azure-pipelines - keyword.control.directive.azure-pipelines
+#                      ^^ meta.runtime.expression.azure-pipelines variable.other.property.azure-pipelines - keyword.control.directive.azure-pipelines support.function.builtin.azure-pipelines
+#                         ^^^^^^^^^ meta.runtime.expression.azure-pipelines variable.other.property.azure-pipelines - variable.language.context.azure-pipelines
+condition: eq(variables.if.in.variables, 'yes')
+#                       ^^ meta.implicit-expression.azure-pipelines variable.other.property.azure-pipelines - keyword.control.directive.azure-pipelines
+#                          ^^^ meta.implicit-expression.azure-pipelines - keyword.control.directive.azure-pipelines support.function.builtin.azure-pipelines
+#                             ^^^^^^^^^ meta.implicit-expression.azure-pipelines variable.other.property.azure-pipelines - variable.language.context.azure-pipelines
