@@ -1,0 +1,74 @@
+# SYNTAX TEST "source.yaml" "condition expression scalar styles and scope termination"
+
+condition: in(variables['Build.Reason'], 'Manual', 'IndividualCI')
+#          ^^ meta.implicit-expression.azure-pipelines support.function.builtin.azure-pipelines - keyword.control.directive.azure-pipelines
+#             ^^^^^^^^^ meta.implicit-expression.azure-pipelines variable.language.context.azure-pipelines
+displayName: in(variables.fake)
+#            ^^^ - meta.implicit-expression.azure-pipelines support.function.builtin.azure-pipelines support.function.job-status.azure-pipelines variable.language.context.azure-pipelines
+#               ^^^^^^^^^ - meta.implicit-expression.azure-pipelines support.function.builtin.azure-pipelines support.function.job-status.azure-pipelines variable.language.context.azure-pipelines
+
+condition: 'and(succeeded(), eq(variables[''Build.Reason''], ''Manual''))'
+#           ^^^ meta.implicit-expression.azure-pipelines support.function.builtin.azure-pipelines
+#               ^^^^^^^^^ meta.implicit-expression.azure-pipelines support.function.job-status.azure-pipelines
+#                               ^^^^^^^^^ meta.implicit-expression.azure-pipelines variable.language.context.azure-pipelines
+#                                                            ^^^^^^^^^^ meta.implicit-expression.azure-pipelines string.quoted.single.azure-pipelines
+displayName: succeeded()
+#            ^^^^^^^^^ - meta.implicit-expression.azure-pipelines support.function.builtin.azure-pipelines support.function.job-status.azure-pipelines variable.language.context.azure-pipelines
+
+condition: "and(succeeded(), eq(variables['Build.Reason'], 'Manual'))"
+#           ^^^ meta.implicit-expression.azure-pipelines support.function.builtin.azure-pipelines
+#               ^^^^^^^^^ meta.implicit-expression.azure-pipelines support.function.job-status.azure-pipelines
+#                               ^^^^^^^^^ meta.implicit-expression.azure-pipelines variable.language.context.azure-pipelines
+displayName: eq(variables.fake, true)
+#            ^^ - meta.implicit-expression.azure-pipelines support.function.builtin.azure-pipelines support.function.job-status.azure-pipelines variable.language.context.azure-pipelines
+#               ^^^^^^^^^ - meta.implicit-expression.azure-pipelines support.function.builtin.azure-pipelines support.function.job-status.azure-pipelines variable.language.context.azure-pipelines
+
+condition: >-
+  and(
+# ^^^ meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.builtin.azure-pipelines
+    succeeded(),
+#   ^^^^^^^^^ meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.job-status.azure-pipelines
+    in(variables.reason, 'Manual')
+#   ^^ meta.implicit-expression.azure-pipelines support.function.builtin.azure-pipelines - keyword.control.directive.azure-pipelines
+#                ^^^^^^ meta.implicit-expression.azure-pipelines variable.other.property.azure-pipelines
+  )
+displayName: in(variables.reason, Manual)
+#            ^^^ - meta.implicit-expression.azure-pipelines support.function.builtin.azure-pipelines support.function.job-status.azure-pipelines variable.language.context.azure-pipelines
+#               ^^^^^^^^^ - meta.implicit-expression.azure-pipelines support.function.builtin.azure-pipelines support.function.job-status.azure-pipelines variable.language.context.azure-pipelines
+
+condition: |+
+  or(
+# ^^ meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.builtin.azure-pipelines
+    failed(),
+#   ^^^^^^ meta.implicit-expression.azure-pipelines string.unquoted.block.yaml support.function.job-status.azure-pipelines
+    eq(dependencies.build.outputs['compile.ready'], 'true')
+#      ^^^^^^^^^^^^ meta.implicit-expression.azure-pipelines variable.language.context.azure-pipelines
+#                         ^^^^^^^ meta.implicit-expression.azure-pipelines variable.other.property.azure-pipelines
+  )
+continueOnError: true
+#                ^^^^ - meta.implicit-expression.azure-pipelines
+
+jobs:
+- job: build
+  condition: >
+    and(
+#   ^^^ meta.implicit-expression.azure-pipelines support.function.builtin.azure-pipelines
+      succeeded(),
+#     ^^^^^^^^^ meta.implicit-expression.azure-pipelines support.function.job-status.azure-pipelines
+      eq(variables.if, 'yes')
+#                  ^^ meta.implicit-expression.azure-pipelines variable.other.property.azure-pipelines - keyword.control.directive.azure-pipelines
+    )
+  displayName: in(variables.reason)
+#              ^^^ - meta.implicit-expression.azure-pipelines support.function.builtin.azure-pipelines support.function.job-status.azure-pipelines variable.language.context.azure-pipelines
+#                 ^^^^^^^^^ - meta.implicit-expression.azure-pipelines support.function.builtin.azure-pipelines support.function.job-status.azure-pipelines variable.language.context.azure-pipelines
+
+steps:
+- script: |
+    condition: eq(variables.fake, true)
+#   ^^^^^^^^^ string.unquoted.block.yaml - meta.implicit-expression.azure-pipelines
+#              ^^ string.unquoted.block.yaml - meta.implicit-expression.azure-pipelines support.function.builtin.azure-pipelines support.function.job-status.azure-pipelines variable.language.context.azure-pipelines
+#                 ^^^^^^^^^ - meta.implicit-expression.azure-pipelines support.function.builtin.azure-pipelines support.function.job-status.azure-pipelines variable.language.context.azure-pipelines
+    echo in(variables.fake)
+#        ^^^ string.unquoted.block.yaml - meta.implicit-expression.azure-pipelines support.function.builtin.azure-pipelines support.function.job-status.azure-pipelines variable.language.context.azure-pipelines
+  displayName: succeeded()
+#              ^^^^^^^^^ - meta.implicit-expression.azure-pipelines support.function.builtin.azure-pipelines support.function.job-status.azure-pipelines variable.language.context.azure-pipelines

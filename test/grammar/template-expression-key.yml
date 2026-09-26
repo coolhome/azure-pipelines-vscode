@@ -2,7 +2,7 @@
 
 jobs:
 - ${{ if eq(parameters.foo, true) }}:
-# ^ meta.template.expression.azure-pipelines punctuation.definition.expression.sigil.azure-pipelines
+# ^ meta.template.expression.azure-pipelines keyword.operator.expression.sigil.azure-pipelines
 #  ^^ meta.template.expression.azure-pipelines punctuation.definition.template-expression.begin.azure-pipelines
 #     ^^ meta.template.expression.azure-pipelines keyword.control.directive.azure-pipelines
 #        ^^ meta.template.expression.azure-pipelines support.function.builtin.azure-pipelines
@@ -14,7 +14,7 @@ jobs:
 
 variables:
   ${{ if eq(parameters.env, 'prod') }}:
-# ^ meta.template.expression.azure-pipelines punctuation.definition.expression.sigil.azure-pipelines
+# ^ meta.template.expression.azure-pipelines keyword.operator.expression.sigil.azure-pipelines
 #  ^^ meta.template.expression.azure-pipelines punctuation.definition.template-expression.begin.azure-pipelines
 #     ^^ meta.template.expression.azure-pipelines keyword.control.directive.azure-pipelines
 #        ^^ meta.template.expression.azure-pipelines support.function.builtin.azure-pipelines
@@ -24,7 +24,7 @@ variables:
 #                                     ^ punctuation.separator.key-value.mapping.yaml
 
   ${{ each env in parameters.envs }}:
-# ^ meta.template.expression.azure-pipelines punctuation.definition.expression.sigil.azure-pipelines
+# ^ meta.template.expression.azure-pipelines keyword.operator.expression.sigil.azure-pipelines
 #  ^^ meta.template.expression.azure-pipelines punctuation.definition.template-expression.begin.azure-pipelines
 #     ^^^^ meta.template.expression.azure-pipelines keyword.control.directive.azure-pipelines
 #              ^^ meta.template.expression.azure-pipelines keyword.control.directive.azure-pipelines
@@ -36,7 +36,7 @@ variables:
 # so nested block content keeps its scoping.
 - '${{ each region in split(''a'', '','') }}':
 # ^ punctuation.definition.string.begin.yaml
-#  ^ meta.template.expression.azure-pipelines punctuation.definition.expression.sigil.azure-pipelines
+#  ^ meta.template.expression.azure-pipelines keyword.operator.expression.sigil.azure-pipelines
 #   ^^ meta.template.expression.azure-pipelines punctuation.definition.template-expression.begin.azure-pipelines
 #      ^^^^ meta.template.expression.azure-pipelines keyword.control.directive.azure-pipelines
 #                                         ^^ meta.template.expression.azure-pipelines punctuation.definition.template-expression.end.azure-pipelines
@@ -44,15 +44,15 @@ variables:
 #                                            ^ punctuation.separator.key-value.mapping.yaml
   - script: echo hi
 # ^ punctuation.definition.block.sequence.item.yaml
-#   ^^^^^^ string.unquoted.plain.out.yaml entity.name.tag.yaml
+#   ^^^^^^ keyword.control.pipeline-entry.azure-pipelines
 
 - "${{ each region in split('a', ',') }}":
 # ^ punctuation.definition.string.begin.yaml
-#  ^ meta.template.expression.azure-pipelines punctuation.definition.expression.sigil.azure-pipelines
+#  ^ meta.template.expression.azure-pipelines keyword.operator.expression.sigil.azure-pipelines
 #   ^^ meta.template.expression.azure-pipelines punctuation.definition.template-expression.begin.azure-pipelines
 #                                     ^^ meta.template.expression.azure-pipelines punctuation.definition.template-expression.end.azure-pipelines
 #                                       ^ punctuation.definition.string.end.yaml
 #                                        ^ punctuation.separator.key-value.mapping.yaml
   - script: echo hi
 # ^ punctuation.definition.block.sequence.item.yaml
-#   ^^^^^^ string.unquoted.plain.out.yaml entity.name.tag.yaml
+#   ^^^^^^ keyword.control.pipeline-entry.azure-pipelines

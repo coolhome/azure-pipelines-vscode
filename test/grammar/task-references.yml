@@ -1,0 +1,40 @@
+# SYNTAX TEST "source.yaml" "literal task names versions and value boundaries"
+
+- task: Bash@3
+# ^^^^ entity.name.tag.yaml
+#       ^^^^ support.function.task.azure-pipelines
+#           ^ punctuation.separator.task-version.azure-pipelines
+#            ^ constant.numeric.task-version.azure-pipelines
+  - task: Contoso.Tools.Build@2.4.1 # pinned task
+#   ^^^^ entity.name.tag.yaml
+#         ^^^^^^^^^^^^^^^^^^^ support.function.task.azure-pipelines
+#                            ^ punctuation.separator.task-version.azure-pipelines
+#                             ^^^^^ constant.numeric.task-version.azure-pipelines
+#                                   ^^^^^^^^^^^^^ comment.line.number-sign.yaml - support.function.task.azure-pipelines constant.numeric.task-version.azure-pipelines
+  - task: 00000000-0000-4000-8000-000000000000@1
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ support.function.task.azure-pipelines
+#                                             ^ punctuation.separator.task-version.azure-pipelines
+#                                              ^ constant.numeric.task-version.azure-pipelines
+
+- task: 'Bash@3'
+#        ^^^^^^ string.quoted.single.yaml - support.function.task.azure-pipelines punctuation.separator.task-version.azure-pipelines constant.numeric.task-version.azure-pipelines
+- task: "Bash@3"
+#        ^^^^^^ string.quoted.double.yaml - support.function.task.azure-pipelines punctuation.separator.task-version.azure-pipelines constant.numeric.task-version.azure-pipelines
+- task: ${{ parameters.task }}
+#           ^^^^^^^^^^ meta.template.expression.azure-pipelines variable.language.context.azure-pipelines - support.function.task.azure-pipelines
+#                      ^^^^ meta.template.expression.azure-pipelines variable.other.property.azure-pipelines - support.function.task.azure-pipelines
+- task: $(taskName)@3
+#         ^^^^^^^^ meta.macro.expression.azure-pipelines variable.other.macro.azure-pipelines - support.function.task.azure-pipelines
+#                  ^^ - punctuation.separator.task-version.azure-pipelines constant.numeric.task-version.azure-pipelines
+
+displayName: Bash@3
+#            ^^^^^^ - support.function.task.azure-pipelines punctuation.separator.task-version.azure-pipelines constant.numeric.task-version.azure-pipelines
+value: 'task: Bash@3'
+#             ^^^^^^ string.quoted.single.yaml - support.function.task.azure-pipelines punctuation.separator.task-version.azure-pipelines constant.numeric.task-version.azure-pipelines
+value: "task: Bash@3"
+#             ^^^^^^ string.quoted.double.yaml - support.function.task.azure-pipelines punctuation.separator.task-version.azure-pipelines constant.numeric.task-version.azure-pipelines
+# task: Bash@3
+#       ^^^^^^ comment.line.number-sign.yaml - support.function.task.azure-pipelines punctuation.separator.task-version.azure-pipelines constant.numeric.task-version.azure-pipelines
+- script: |
+    task: Bash@3
+#         ^^^^^^ string.unquoted.block.yaml - support.function.task.azure-pipelines punctuation.separator.task-version.azure-pipelines constant.numeric.task-version.azure-pipelines

@@ -1,0 +1,58 @@
+# SYNTAX TEST "source.yaml" "root pipeline keys preserve nested YAML and scalar boundaries"
+
+stages:
+#^^^^^ keyword.control.pipeline-section.azure-pipelines
+#     ^ punctuation.separator.key-value.mapping.yaml
+jobs:
+#^^^ keyword.control.pipeline-section.azure-pipelines
+#   ^ punctuation.separator.key-value.mapping.yaml
+steps:
+#^^^^ keyword.control.pipeline-section.azure-pipelines
+#    ^ punctuation.separator.key-value.mapping.yaml
+parameters:
+#^^^^^^^^^ keyword.control.pipeline-section.azure-pipelines
+#         ^ punctuation.separator.key-value.mapping.yaml
+variables:
+#^^^^^^^^ keyword.control.pipeline-section.azure-pipelines
+#        ^ punctuation.separator.key-value.mapping.yaml
+resources:
+#^^^^^^^^ keyword.control.pipeline-section.azure-pipelines
+#        ^ punctuation.separator.key-value.mapping.yaml
+trigger:
+#^^^^^^ keyword.control.pipeline-section.azure-pipelines
+#      ^ punctuation.separator.key-value.mapping.yaml
+pr:
+#^ keyword.control.pipeline-section.azure-pipelines
+# ^ punctuation.separator.key-value.mapping.yaml
+schedules:
+#^^^^^^^^ keyword.control.pipeline-section.azure-pipelines
+#        ^ punctuation.separator.key-value.mapping.yaml
+extends:
+#^^^^^^ keyword.control.pipeline-section.azure-pipelines
+#      ^ punctuation.separator.key-value.mapping.yaml
+
+object:
+  jobs: ordinary
+# ^^^^ entity.name.tag.yaml - keyword.control.pipeline-section.azure-pipelines
+  script: ordinary
+# ^^^^^^ entity.name.tag.yaml - keyword.control.pipeline-entry.azure-pipelines
+value: "jobs: - script: Bash@3"
+#       ^^^^ string.quoted.double.yaml - keyword.control.pipeline-section.azure-pipelines keyword.control.pipeline-entry.azure-pipelines support.function.task.azure-pipelines constant.numeric.task-version.azure-pipelines punctuation.separator.task-version.azure-pipelines
+#               ^^^^^^ - keyword.control.pipeline-section.azure-pipelines keyword.control.pipeline-entry.azure-pipelines support.function.task.azure-pipelines constant.numeric.task-version.azure-pipelines punctuation.separator.task-version.azure-pipelines
+value: 'stages: - bash: echo hi'
+#       ^^^^^^ string.quoted.single.yaml - keyword.control.pipeline-section.azure-pipelines keyword.control.pipeline-entry.azure-pipelines support.function.task.azure-pipelines constant.numeric.task-version.azure-pipelines punctuation.separator.task-version.azure-pipelines
+#                 ^^^^ - keyword.control.pipeline-section.azure-pipelines keyword.control.pipeline-entry.azure-pipelines support.function.task.azure-pipelines constant.numeric.task-version.azure-pipelines punctuation.separator.task-version.azure-pipelines
+# jobs: - script: Bash@3
+# ^^^^ comment.line.number-sign.yaml - keyword.control.pipeline-section.azure-pipelines keyword.control.pipeline-entry.azure-pipelines support.function.task.azure-pipelines constant.numeric.task-version.azure-pipelines punctuation.separator.task-version.azure-pipelines
+#         ^^^^^^ - keyword.control.pipeline-section.azure-pipelines keyword.control.pipeline-entry.azure-pipelines support.function.task.azure-pipelines constant.numeric.task-version.azure-pipelines punctuation.separator.task-version.azure-pipelines
+
+steps:
+- script: |
+    jobs: ordinary
+#   ^^^^ string.unquoted.block.yaml - keyword.control.pipeline-section.azure-pipelines keyword.control.pipeline-entry.azure-pipelines support.function.task.azure-pipelines constant.numeric.task-version.azure-pipelines punctuation.separator.task-version.azure-pipelines
+    - script: echo nested
+#     ^^^^^^ string.unquoted.block.yaml - keyword.control.pipeline-section.azure-pipelines keyword.control.pipeline-entry.azure-pipelines support.function.task.azure-pipelines constant.numeric.task-version.azure-pipelines punctuation.separator.task-version.azure-pipelines
+    task: Bash@3
+#         ^^^^^^ string.unquoted.block.yaml - keyword.control.pipeline-section.azure-pipelines keyword.control.pipeline-entry.azure-pipelines support.function.task.azure-pipelines constant.numeric.task-version.azure-pipelines punctuation.separator.task-version.azure-pipelines
+  displayName: task Bash@3
+#                   ^^^^^^ - keyword.control.pipeline-section.azure-pipelines keyword.control.pipeline-entry.azure-pipelines support.function.task.azure-pipelines constant.numeric.task-version.azure-pipelines punctuation.separator.task-version.azure-pipelines

@@ -1,0 +1,64 @@
+# SYNTAX TEST "source.yaml" "pipeline sequence entry keywords and ordinary YAML scalars"
+
+  - script: echo hi
+# ^ punctuation.definition.block.sequence.item.yaml
+#   ^^^^^^ keyword.control.pipeline-entry.azure-pipelines
+#         ^ punctuation.separator.key-value.mapping.yaml
+  - bash: echo hi
+# ^ punctuation.definition.block.sequence.item.yaml
+#   ^^^^ keyword.control.pipeline-entry.azure-pipelines
+#       ^ punctuation.separator.key-value.mapping.yaml
+  - pwsh: Write-Host hi
+# ^ punctuation.definition.block.sequence.item.yaml
+#   ^^^^ keyword.control.pipeline-entry.azure-pipelines
+#       ^ punctuation.separator.key-value.mapping.yaml
+  - powershell: Write-Host hi
+# ^ punctuation.definition.block.sequence.item.yaml
+#   ^^^^^^^^^^ keyword.control.pipeline-entry.azure-pipelines
+#             ^ punctuation.separator.key-value.mapping.yaml
+  - checkout: self
+# ^ punctuation.definition.block.sequence.item.yaml
+#   ^^^^^^^^ keyword.control.pipeline-entry.azure-pipelines
+#           ^ punctuation.separator.key-value.mapping.yaml
+  - download: current
+# ^ punctuation.definition.block.sequence.item.yaml
+#   ^^^^^^^^ keyword.control.pipeline-entry.azure-pipelines
+#           ^ punctuation.separator.key-value.mapping.yaml
+  - downloadBuild: legacy
+# ^ punctuation.definition.block.sequence.item.yaml
+#   ^^^^^^^^^^^^^ keyword.control.pipeline-entry.azure-pipelines
+#                ^ punctuation.separator.key-value.mapping.yaml
+  - publish: dist
+# ^ punctuation.definition.block.sequence.item.yaml
+#   ^^^^^^^ keyword.control.pipeline-entry.azure-pipelines
+#          ^ punctuation.separator.key-value.mapping.yaml
+  - template: steps.yml
+# ^ punctuation.definition.block.sequence.item.yaml
+#   ^^^^^^^^ keyword.control.pipeline-entry.azure-pipelines
+#           ^ punctuation.separator.key-value.mapping.yaml
+  - stage: Build
+# ^ punctuation.definition.block.sequence.item.yaml
+#   ^^^^^ keyword.control.pipeline-entry.azure-pipelines
+#        ^ punctuation.separator.key-value.mapping.yaml
+  - job: Compile
+# ^ punctuation.definition.block.sequence.item.yaml
+#   ^^^ keyword.control.pipeline-entry.azure-pipelines
+#      ^ punctuation.separator.key-value.mapping.yaml
+  - deployment: Deploy
+# ^ punctuation.definition.block.sequence.item.yaml
+#   ^^^^^^^^^^ keyword.control.pipeline-entry.azure-pipelines
+#             ^ punctuation.separator.key-value.mapping.yaml
+
+plain: script bash checkout
+#      ^^^^^^ - keyword.control.pipeline-entry.azure-pipelines
+#             ^^^^ - keyword.control.pipeline-entry.azure-pipelines
+#                  ^^^^^^^^ - keyword.control.pipeline-entry.azure-pipelines
+value: '- script: echo hi'
+#         ^^^^^^ string.quoted.single.yaml - keyword.control.pipeline-entry.azure-pipelines
+value: "- checkout: self"
+#         ^^^^^^^^ string.quoted.double.yaml - keyword.control.pipeline-entry.azure-pipelines
+# - template: steps.yml
+#   ^^^^^^^^ comment.line.number-sign.yaml - keyword.control.pipeline-entry.azure-pipelines
+- bash: |
+    - publish: dist
+#     ^^^^^^^ string.unquoted.block.yaml - keyword.control.pipeline-entry.azure-pipelines

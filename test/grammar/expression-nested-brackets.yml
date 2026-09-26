@@ -1,0 +1,24 @@
+# SYNTAX TEST "source.yaml" "nested bracket accesses retain expression scopes"
+
+value: $[ eq(dependencies['build'].outputs[variables['outputKey']], 'true') ]
+#            ^^^^^^^^^^^^ meta.runtime.expression.azure-pipelines variable.language.context.azure-pipelines
+#                                  ^^^^^^^ meta.runtime.expression.azure-pipelines variable.other.property.azure-pipelines
+#                                          ^^^^^^^^^ meta.runtime.expression.azure-pipelines variable.language.context.azure-pipelines
+#                                                    ^^^^^^^^^^^ meta.runtime.expression.azure-pipelines string.quoted.single.azure-pipelines
+#                                                               ^^ meta.runtime.expression.azure-pipelines punctuation.section.brackets.end.azure-pipelines
+#                                                                   ^^^^^^ meta.runtime.expression.azure-pipelines string.quoted.single.azure-pipelines
+#                                                                         ^ meta.runtime.expression.azure-pipelines punctuation.section.arguments.end.azure-pipelines
+#                                                                           ^ meta.runtime.expression.azure-pipelines punctuation.definition.runtime-expression.end.azure-pipelines
+plain: in(variables.test)
+#      ^^^ - meta.runtime.expression.azure-pipelines meta.implicit-expression.azure-pipelines support.function.builtin.azure-pipelines
+#         ^^^^^^^^^ - meta.runtime.expression.azure-pipelines variable.language.context.azure-pipelines
+
+value: ${{ parameters.options[parameters['choice']].if }}
+#                     ^^^^^^^ meta.template.expression.azure-pipelines variable.other.property.azure-pipelines
+#                             ^^^^^^^^^^ meta.template.expression.azure-pipelines variable.language.context.azure-pipelines
+#                                                ^^ meta.template.expression.azure-pipelines punctuation.section.brackets.end.azure-pipelines
+#                                                   ^^ meta.template.expression.azure-pipelines variable.other.property.azure-pipelines - keyword.control.directive.azure-pipelines
+#                                                      ^^ meta.template.expression.azure-pipelines punctuation.definition.template-expression.end.azure-pipelines
+plain: variables.if
+#      ^^^^^^^^^ - meta.template.expression.azure-pipelines variable.language.context.azure-pipelines
+#                ^^ - meta.template.expression.azure-pipelines keyword.control.directive.azure-pipelines
